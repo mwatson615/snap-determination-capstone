@@ -1,3 +1,5 @@
-app.controller('HomeCtrl', function($scope) {
-	console.log('home ctrl')
+app.controller('HomeCtrl', function($scope, $location) {
+	$scope.proceed = () => {
+		$location.url('/demo')
+	}
 })
