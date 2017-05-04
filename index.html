@@ -2,21 +2,39 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<base href="/">
 	<title>SNAP Determination</title>
 	<link rel="stylesheet" type="text/css" href="lib/materialize/dist/css/materialize.min.css">
 	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body ng-app="Snap">
-	<h1>Welcome to the SNAP app!</h1>
+	<div class="container">
+		 <nav>
+		    <div class="nav-wrapper">
+		      <a href="/" class="brand-logo left">SNAP</a>
+		      <ul id="nav-mobile" class="right">
+		        <li><a href="/demo">Basic Info</a></li>
+		        <li><a href="/resources">Resources</a></li>
+		        <li><a href="/income">Income</a></li>
+		        <li><a href="/shelter">Shelter Costs</a></li>
+		      </ul>
+		    </div>
+		  </nav>
 
 	<div ng-view></div>
 
 
 
-	<!-- <script src="lib/jquery/dist/jquery.min.js"></script> -->
+	</div>
+	<script src="lib/jquery/dist/jquery.min.js"></script>
 	<script src="lib/angular/angular.min.js"></script>
 	<script src="lib/angular-route/angular-route.min.js"></script>
 	<script src="app/app.js"></script>
 	<script src="app/controllers/homeCtrl.js"></script>
+	<script src="app/controllers/demoCtrl.js"></script>
+	<script src="app/controllers/incomeCtrl.js"></script>
+	<script src="app/controllers/resourceCtrl.js"></script>
+	<script src="app/controllers/resultsCtrl.js"></script>
+	<script src="app/controllers/shelterCtrl.js"></script>
 </body>
 </html>
