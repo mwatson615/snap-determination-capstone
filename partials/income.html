@@ -1,22 +1,60 @@
   <div class="row">
 	<h3>Person 1</h3>
+	<!-- employer field -->
     <form class="col s12">
       <div class="row">
         <div class="input-field col s6">
-          <input id="employer" type="text" class="validate">
+          <input id="employer" ng-model="employer" type="text" class="validate">
           <label for="employer">Employer</label>
         </div>
       </div>
-    </form>
-    <form action="#">
+    <!-- </form> -->
+    <!-- <form action="#"> -->
+
+    <!-- select options for pay frequency -->
     	<div class="input-field col s12">
-    <select>
-      <option value="weekly">Weekly</option>
-      <option value="biweekly">Every 2 Weeks</option>
-      <option value="twiceMonthly">Twice Per Month</option>
-      <option value="monthly">Once Per Month</option>
-    </select>
-    <label>How Often Are You Paid?</label>
-  </div>
-	</form>
+		    <select ng-model="payFrequency">
+		      <option value="weekly">Weekly</option>
+		      <option value="biweekly">Every 2 Weeks</option>
+		      <option value="twiceMonthly">Twice Per Month</option>
+		      <option value="monthly">Once Per Month</option>
+		    </select>
+		    <label>How Often Are You Paid?</label>
+		  </div>
+	<!-- </form> -->
+	 <!-- <div class="row"> -->
+	    <!-- <form class="col s12"> -->
+
+	    <!-- pay stub entry -->
+	      <div class="row">
+	        <div class="input-field col s3">
+	          <input placeholder="Pay Amount #1" id="first_name" type="number" class="validate paystubs">
+	        </div>
+	        <div class="input-field col s3">
+	          <input placeholder="Pay Amount #2" id="first_name" type="number" class="validate paystubs">
+	        </div>
+	        <div class="input-field col s3">
+	          <input placeholder="Pay Amount #3" id="first_name" type="number" class="validate paystubs">
+	        </div>
+	        <div class="input-field col s3">
+	          <input placeholder="Pay Amount #4" id="first_name" type="number" class="validate paystubs">
+	        </div>
+	      </div>
+	       <div class="row">
+	        <div class="input-field col s3">
+	          <input placeholder="Pay Amount #5" id="first_name" type="number" class="validate paystubs">
+	        </div>
+	        <div class="input-field col s3">
+	          <input placeholder="Pay Amount #6" id="first_name" type="number" class="validate paystubs">
+	        </div>
+	        <div class="input-field col s3">
+	          <input placeholder="Pay Amount #7" id="first_name" type="number" class="validate paystubs">
+	        </div>
+	        <div class="input-field col s3">
+	          <input placeholder="Pay Amount #8" id="first_name" type="number" class="validate paystubs">
+	        </div>
+	      </div>
+	    </form>
+	    <a class="waves-effect waves-light btn" ng-click="getIncome()">Proceed</a>
+	 </div>
 </div>

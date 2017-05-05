@@ -1,6 +1,7 @@
 const app = angular.module('Snap', ['ngRoute'])
 
 app.config(function($routeProvider, $locationProvider) {
+	$locationProvider.hashPrefix('')
 	$routeProvider
 	.when('/', {
 		templateUrl: 'partials/home.html',
@@ -23,5 +24,5 @@ app.config(function($routeProvider, $locationProvider) {
 	}).otherwise({
 		redirectTo: '/'
 	})
-	$locationProvider.html5Mode(true);
+	// $locationProvider.html5Mode(true);
 });
