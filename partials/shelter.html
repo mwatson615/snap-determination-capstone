@@ -1,1 +1,44 @@
 <h1>Shelter</h1>
+
+<!-- select options for shelter cost type -->
+<div class="row">
+	<form class="col s12">
+	<div class="input-field col s6 offset-s3">
+	    <select ng-model="shelterType">
+		      <option value="rent">Rent</option>
+		      <option value="mortgage">Mortgage</option>
+	    </select>
+	    <label>Which Kind of Shelter Costs Do You Pay?</label>
+	</div>
+      <div class="row">
+        <div class="input-field col s6 offset-s3">
+          <input id="shelterCost" ng-model="shelterCost" type="number" class="validate">
+          <label for="shelterCost">Amount Paid</label>
+        </div>
+      </div>
+      <div class="input-field col s6 offset-s3">
+	    <select ng-model="shelterFrequency">
+		      <option value="weekly">Weekly</option>
+		      <option value="monthly">Monthly</option>
+		      <option value="biweekly">Every 2 Weeks</option>
+	    </select>
+	    <label>How Often?</label>
+	  </div>
+		  <div id="sua" class="row">
+		  	<div class="input-field col s8 offset-s3">
+		   <p>
+		      <input name="group1" ng-model="paysSUA" type="radio" ng-value="yesRadio" id="yesSUA" />
+		      <label for="yesSUA">Yes</label>
+		    </p>
+		    <p>
+		      <input name="group1" ng-model="paysSUA" type="radio" ng-value="noRadio" id="noSUA" />
+		      <label for="noSUA">No</label>
+		    </p>
+		  <label for="sua">Do You Pay A Major Heating or Cooling Bill?</label>
+		  </div>
+	  </div>
+    </form>
+    <div class="center">
+    <a class="waves-effect waves-light btn center" ng-click="getShelter()">Calculate</a>
+    </div>
+</div>

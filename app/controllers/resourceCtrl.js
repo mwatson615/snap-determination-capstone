@@ -3,6 +3,8 @@ app.controller('ResourceCtrl', function($scope) {
 		$('select').material_select();
 	});
 
+	$scope.resType = '';
+	$scope.resBalance = '';
 	$scope.getResources = () => {
 		let resources = {
 			"resourceType" : $scope.resType,
