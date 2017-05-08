@@ -10,29 +10,14 @@ app.controller('IncomeCtrl', function($scope) {
 
 	$scope.getPaystubs = (paystubs) => {
 		for ( let i = 0; i < paystubs.length; i++) {
-			paystubArr.push(parseInt(paystubs[i].value));
+			let payTest = parseInt(paystubs[i].value)
+			if (payTest[i] !== 'NaN' || null) {
+			// 	console.log(typeof paystubs[i].value)
+			paystubArr.push(parseInt(payTest));
+		}
 	}
 	console.log(paystubArr)
-	// return paystubArr;
 	}
-
-	// $scope.getPayFrequency = () => {
-	// 	console.log($scope.payFrequency)
-	// 	if ($scope.payFrequency === 'monthly') {
-	// 		$scope.show2 = true;
-	// 		return $scope.show2
-	// 	} else  if ($scope.payFrequency === 'biweekly' || 'twiceMonthly') {
-	// 		$scope.show2 = true;
-	// 		$scope.show4 = true;
-	// 		return $scope.show4;
-	// 	} else if ($scope.payFrequency === 'weekly') {
-	// 		$scope.show8 = true;
-	// 		return $scope.show8;
-	// 	}
-
-	// }
-	// $scope.getPayFrequency()
-		// $scope.$apply()
 
 	$scope.getIncome = () => {
 		$scope.getPaystubs($('.paystubs'))
