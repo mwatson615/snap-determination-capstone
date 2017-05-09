@@ -23,3 +23,11 @@ module.exports.getAllHouseholds = (req, res, next) => {
 		res.json(households)
 	})
 }
+
+module.exports.getHouseholdZip = ({params: {zip}}, res, next) => {
+	Household
+	.find({zipcode: zip, _id: Person.householdId})
+	.then((data) => {
+		res.json(data)
+	})
+}

@@ -1,7 +1,8 @@
 'use strict';
 const { json } = require('body-parser');
-const mongoose = require('mongoose');
-// const autoIncrement = require('mongoose-auto-increment');
+const mongoose = require('mongoose'),
+	Schema = mongoose.Schema
+
 
 const householdSchema = {
 	'zipcode': String,
@@ -11,7 +12,8 @@ const householdSchema = {
 	'shelterCost': Number,
 	'paysSUA': Boolean,
 	'totalCountableIC': Number,
-	'totalResources': Number
+	'totalResources': Number,
+	'peopleArray': [{type: Schema.Types.ObjectId, ref: 'Person'}]
 }
 
 const Household = mongoose.model('Household', householdSchema);
