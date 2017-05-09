@@ -6,20 +6,23 @@ const mongoose = require('mongoose');
 const { Router } = require('express');
 const router = Router();
 
-const routes = require('../server/routes/router.js')
+const routes = require('./routes/router.js')
 
 const app = express();
 const PORT = process.env.PORT || 3000
 
 const MONGODB_URL = process.env.MONGODB_URL || 'mongodb://localhost:27017/snapdb'
 
-// app.use(json());
+app.use(json());
 
 mongoose.Promise = Promise;
 
+// app.get('/', (req, res, next) => {
+// 	console.log('hi')
+// 	res.send("hi there")
+// })
 
-
-router.use('/api/v1', routes)
+app.use('/api/v1/', routes)
 
 mongoose.connect(MONGODB_URL)
 	.then(() => {
