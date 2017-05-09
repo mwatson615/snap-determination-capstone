@@ -22,6 +22,7 @@
     "express": "^4.15.2",
     "express-server": "^0.7.0",
     "mongoose": "^4.9.8",
+    "mongoose-auto-increment": "^5.0.1",
     "nodemon": "^1.11.0"
   }
 }

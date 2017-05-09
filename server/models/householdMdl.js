@@ -16,8 +16,4 @@ const householdSchema = {
 
 const Household = mongoose.model('Household', householdSchema);
 
-
-
-
-// householdSchema.plugin(autoIncrement.plugin, 'Household')
 module.exports = Household;

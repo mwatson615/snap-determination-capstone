@@ -17,11 +17,6 @@ app.use(json());
 
 mongoose.Promise = Promise;
 
-// app.get('/', (req, res, next) => {
-// 	console.log('hi')
-// 	res.send("hi there")
-// })
-
 app.use('/api/v1/', routes)
 
 mongoose.connect(MONGODB_URL)
