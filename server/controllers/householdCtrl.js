@@ -49,7 +49,6 @@ module.exports.addShelter = ({body}, res, err) => {
 }
 
 module.exports.getHouseholdById = ({params: {id}}, res, err) => {
-	console.log("i'm summary")
 	Household
 	.find({_id: id})
 	.then((data) => {
