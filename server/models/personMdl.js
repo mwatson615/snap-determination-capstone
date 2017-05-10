@@ -2,7 +2,6 @@
 const { json } = require('body-parser');
 const mongoose = require('mongoose'),
 	Schema = mongoose.Schema
-// const autoIncrement = require('mongoose-auto-increment');
 
 const personSchema = {
 	"householdId": {type: Schema.Types.ObjectId, ref: 'Household'},
@@ -14,11 +13,7 @@ const personSchema = {
 	"resourceAmount": [Number],
 	"hasEmployer": Boolean,
 	"employerName": String,
-	"payArray": {
-		type: [Number],
-		min: 2,
-		max: 8
-	}
+	"payArray": [Number]
 }
 
 const Person = mongoose.model('Person', personSchema);

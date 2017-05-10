@@ -26,7 +26,32 @@ module.exports.getAllHouseholds = (req, res, next) => {
 
 module.exports.getHouseholdZip = ({params: {zip}}, res, next) => {
 	Household
-	.find({zipcode: zip, _id: Person.householdId})
+	.find({zipcode: zip})
+	.then((data) => {
+		res.json(data)
+	})
+}
+
+module.exports.addShelter = ({body}, res, err, next) => {
+	Household
+	.findOneAndUpdate(
+		{_id: body.id},
+		{shelterType: body.shelterType,
+		shelterPayFrequency: body.shelterPayFrequency,
+		shelterCost: body.shelterCost,
+		paysSUA: body.paysSUA},
+		{upsert: true}
+	)
+	.then((data) => {
+		res.json(data)
+	})
+	.catch(err)
+}
+
+module.exports.getSummary = ({params: {id}}, res, next) => {
+	console.log(id)
+	Household
+	.find({_id: id})
 	.then((data) => {
 		res.json(data)
 	})
