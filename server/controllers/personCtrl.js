@@ -8,7 +8,7 @@ mongoose.Promise = Promise;
 
 const Person = require('../models/personMdl');
 
-module.exports.addPerson = ({body}, res, next) => {
+module.exports.addPerson = ({body}, res, err) => {
 	console.log(body)
 	Person
 	.create(body)
@@ -17,7 +17,7 @@ module.exports.addPerson = ({body}, res, next) => {
 	})
 }
 
-module.exports.getAllPersons = (req, res, next) => {
+module.exports.getAllPersons = (req, res, err) => {
 	Person
 	.find()
 	.then((person) => {
@@ -25,7 +25,7 @@ module.exports.getAllPersons = (req, res, next) => {
 	})
 }
 
-module.exports.addResource = ({body}, res, err, next) => {
+module.exports.addResource = ({body}, res, err) => {
 	Person
 	.findOneAndUpdate(
 		{_id: body.id},
@@ -43,18 +43,16 @@ module.exports.addResource = ({body}, res, err, next) => {
 	// 		return res.send('resources updated')
 	// }
 
-module.exports.addIncome = ({body}, res, err, next) => {
-	console.log("hi!")
-	res.send("i'm a res")
-	// Person
-	// .findOneAndUpdate(
-	// 	{_id: body.id},
-	// 	{employerName: body.employerName,
-	// 	payArray: body.payArray},
-	// 	{upsert: true}
-	// )
-	// .then((data) => {
-	// 	res.json(data)
-	// })
-	// .catch(err)
+module.exports.addIncome = ({body}, res, err) => {
+	Person
+	.findOneAndUpdate(
+		{_id: body.id},
+		{employerName: body.employerName,
+		payArray: body.payArray},
+		{upsert: true}
+	)
+	.then((data) => {
+		res.json(data)
+	})
+	.catch(err)
 }

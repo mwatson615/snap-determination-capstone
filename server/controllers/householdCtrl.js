@@ -24,7 +24,7 @@ module.exports.getAllHouseholds = (req, res, next) => {
 	})
 }
 
-module.exports.getHouseholdZip = ({params: {zip}}, res, next) => {
+module.exports.getHouseholdZip = ({params: {zip}}, res, err) => {
 	Household
 	.find({zipcode: zip})
 	.then((data) => {
@@ -32,7 +32,7 @@ module.exports.getHouseholdZip = ({params: {zip}}, res, next) => {
 	})
 }
 
-module.exports.addShelter = ({body}, res, err, next) => {
+module.exports.addShelter = ({body}, res, err) => {
 	Household
 	.findOneAndUpdate(
 		{_id: body.id},
@@ -48,8 +48,8 @@ module.exports.addShelter = ({body}, res, err, next) => {
 	.catch(err)
 }
 
-module.exports.getSummary = ({params: {id}}, res, next) => {
-	console.log(id)
+module.exports.getHouseholdById = ({params: {id}}, res, err) => {
+	console.log("i'm summary")
 	Household
 	.find({_id: id})
 	.then((data) => {
