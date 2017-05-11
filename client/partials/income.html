@@ -12,17 +12,17 @@
     <!-- select options for pay frequency -->
     	<div class="input-field col s12">
 		    <select ng-model="payFrequency">
-		      <option ng-value="2">Once Per Month</option>
-		      <option ng-value="4">Every 2 Weeks</option>
-		      <option ng-value="4">Twice Per Month</option>
-		      <option ng-value="8">Weekly</option>
+		      <option value="monthly">Once Per Month</option>
+		      <option value="biweekly">Every 2 Weeks</option>
+		      <option value="twiceMonthly">Twice Per Month</option>
+		      <option value="weekly">Weekly</option>
 		    </select>
 		    <label>How Often Are You Paid?</label>
 		  </div>
 
 	    <!-- pay stub entry -->
 	      <div class="row">
-	      	<div ng-show="payFrequency === 8 || payFrequency === 4 || payFrequency === 2">
+	      	<div ng-show="payFrequency === 'weekly' || payFrequency === 'biweekly' || payFrequency === 'twiceMonthly' || payFrequency === 'monthly'">
 		        <div class="input-field col s3">
 		          <input placeholder="Pay Amount #1" ng-model="payArray[0]" type="number" class="validate paystubs">
 		        </div>
@@ -30,7 +30,7 @@
 		          <input placeholder="Pay Amount #2" ng-model="payArray[1]" type="number" class="validate paystubs">
 		        </div>
 	        </div>
-	        <div ng-show="payFrequency === 8 || payFrequency === 4">
+	        <div ng-show="payFrequency === 'weekly' || payFrequency === 'biweekly' || payFrequency === 'twiceMonthly'">
 		        <div class="input-field col s3">
 		          <input placeholder="Pay Amount #3" ng-model="payArray[2]" type="number" class="validate paystubs">
 		        </div>
@@ -40,7 +40,7 @@
 	        </div>
 	      </div>
 	      <div class="row">
-	       	<div ng-show="payFrequency === 8" ng-hide="payFrequency !== 8">
+	       	<div ng-show="payFrequency === 'weekly'">
 		        <div class="input-field col s3">
 		          <input placeholder="Pay Amount #5" ng-model="payArray[4]" type="number" class="validate paystubs">
 		        </div>
