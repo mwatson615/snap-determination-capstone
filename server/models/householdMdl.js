@@ -13,7 +13,7 @@ const householdSchema = {
 	'paysSUA': Boolean,
 	'totalCountableIC': Number,
 	'totalResources': Number,
-	'peopleArray': [{type: Schema.Types.ObjectId, ref: 'Person'}]
+	'peopleArray': [{type: Schema.Types.ObjectId, refPath: 'Person._id'}]
 }
 
 const Household = mongoose.model('Household', householdSchema);

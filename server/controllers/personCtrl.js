@@ -7,15 +7,35 @@ app.use(json());
 mongoose.Promise = Promise;
 
 const Person = require('../models/personMdl');
+const Household = require('../models/householdMdl')
 
 module.exports.addPerson = ({body}, res, err) => {
-	console.log(body)
+	// console.log(body)
 	Person
 	.create(body)
 	.then((data) => {
 		res.json(data)
-	})
-}
+		// let people = [];
+		// people.push(data._id)
+		// console.log(data)
+		// Household
+		// .find(
+		// 	{id: data.householdId})
+		// .populate({peopleArray: data._id})
+		// .then((data) => {
+		// 	console.log(data, "then")
+		// 	res.json(data)
+		})
+		.catch(err)
+	}
+// const popPersonArray = (personId) => {
+// Household
+// .find()
+// .populate({
+// 	path: 'person',
+// 	match: { }
+// })
+// }
 
 module.exports.getAllPersons = (req, res, err) => {
 	Person
@@ -38,10 +58,6 @@ module.exports.addResource = ({body}, res, err) => {
 	})
 	.catch(err)
 }
-// 	(err, data) => {
-	// 		if (err) return res.status(500, {error: err});
-	// 		return res.send('resources updated')
-	// }
 
 module.exports.addIncome = ({body}, res, err) => {
 	Person
@@ -57,8 +73,11 @@ module.exports.addIncome = ({body}, res, err) => {
 	.catch(err)
 }
 
-module.exports.getPersonByHousehold = ({params: {id}}) => {
+module.exports.getPersonByHousehold = ({params: {id}}, res, err) => {
 	Person
-	.find(
-		{householdId: id})
+	.find({householdId: id})
+	.then((data) => {
+		res.json(data)
+	})
+	.catch(err)
 }

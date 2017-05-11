@@ -13,7 +13,8 @@ const personSchema = {
 	"resourceAmount": [Number],
 	"hasEmployer": Boolean,
 	"employerName": String,
-	"payArray": [Number]
+	"payArray": [Number],
+	"monthlyIncome": Number
 }
 
 const Person = mongoose.model('Person', personSchema);

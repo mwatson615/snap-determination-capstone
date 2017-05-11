@@ -1,6 +1,10 @@
 app.controller('HomeCtrl', function($scope, $location) {
 	$scope.proceed = () => {
-		console.log($scope.zipcode)
+		let newHousehold = {
+			"zipcode": $scope.zipcode,
+			"peopleArray": []
+		}
+		console.log(newHousehold)
 		// $location.url('/demo')
 	}
 })

@@ -5,9 +5,9 @@ app.controller('ShelterCtrl', function($scope) {
 	$scope.shelterType = '';
 	$scope.shelterCost = '';
 	$scope.shelterFrequency = '';
-	$scope.paysSUA = 'no';
-	$scope.noRadio = 'no';
-	$scope.yesRadio = 'yes';
+	$scope.paysSUA = false;
+	// $scope.noRadio = 'no';
+	// $scope.yesRadio = 'yes';
 
 	$scope.getShelter = () => {
 		let shelter = {

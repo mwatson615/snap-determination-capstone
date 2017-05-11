@@ -55,3 +55,14 @@ module.exports.getHouseholdById = ({params: {id}}, res, err) => {
 		res.json(data)
 	})
 }
+
+module.exports.getHouseholdByPerson = ({params: {id}}, res, err) => {
+	
+	console.log('hh by person')
+	Household
+	.find({peopleArray: id})
+	.then((data) => {
+		res.json(data)
+	})
+	.catch(err)
+}
