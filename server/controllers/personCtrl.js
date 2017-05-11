@@ -14,20 +14,22 @@ module.exports.addPerson = ({body}, res, err) => {
 	Person
 	.create(body)
 	.then((data) => {
-		res.json(data)
-		// let people = [];
-		// people.push(data._id)
+		// res.json(data)
+		let people = [];
+		people.push(data._id) //ADDING NEW PERSON ID TO ARRAY
 		// console.log(data)
-		// Household
-		// .find(
-		// 	{id: data.householdId})
-		// .populate({peopleArray: data._id})
-		// .then((data) => {
-		// 	console.log(data, "then")
-		// 	res.json(data)
+		Household
+		.findOneAndUpdate(
+			{_id: data.householdId},
+			{$push: {peopleArray: data._id}},
+			{new: true})
+		.then((data) => {
+			console.log(data, "then")
+			res.json(data)
 		})
 		.catch(err)
-	}
+	})
+}
 // const popPersonArray = (personId) => {
 // Household
 // .find()
