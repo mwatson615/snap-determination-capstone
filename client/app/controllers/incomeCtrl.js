@@ -3,6 +3,7 @@ app.controller('IncomeCtrl', function($scope) {
 		$('select').material_select();
 	});
 	let paystubArr = [];
+	$scope.payArray = [];
 	// $scope.show2 = false;
 	// $scope.show4 = false;
 	// $scope.show8 = false;
@@ -20,12 +21,12 @@ app.controller('IncomeCtrl', function($scope) {
 	}
 
 	$scope.getIncome = () => {
-		$scope.getPaystubs($('.paystubs'))
-		let employment = {
-			"employer": $scope.employer,
-			"payFrequency": $scope.payFrequency,
-			"payStubs": paystubArr
-		}
-		console.log(employment)
+		// $scope.getPaystubs($('.paystubs'))
+		// let employment = {
+		// 	"employer": $scope.employer,
+		// 	"payFrequency": $scope.payFrequency,
+		// 	"payStubs": paystubArr
+		// }
+		console.log($scope.payArray)
 	}
 })

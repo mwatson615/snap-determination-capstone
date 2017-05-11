@@ -1,5 +1,6 @@
 app.controller('HomeCtrl', function($scope, $location) {
 	$scope.proceed = () => {
-		$location.url('/demo')
+		console.log($scope.zipcode)
+		// $location.url('/demo')
 	}
 })

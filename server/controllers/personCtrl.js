@@ -56,3 +56,9 @@ module.exports.addIncome = ({body}, res, err) => {
 	})
 	.catch(err)
 }
+
+module.exports.getPersonByHousehold = ({params: {id}}) => {
+	Person
+	.find(
+		{householdId: id})
+}
