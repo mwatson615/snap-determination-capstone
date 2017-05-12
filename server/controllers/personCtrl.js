@@ -10,14 +10,9 @@ const Person = require('../models/personMdl');
 const Household = require('../models/householdMdl')
 
 module.exports.addPerson = ({body}, res, err) => {
-	// console.log(body)
 	Person
 	.create(body)
 	.then((data) => {
-		// res.json(data)
-		let people = [];
-		people.push(data._id) //ADDING NEW PERSON ID TO ARRAY
-		// console.log(data)
 		Household
 		.findOneAndUpdate(
 			{_id: data.householdId},
@@ -30,14 +25,6 @@ module.exports.addPerson = ({body}, res, err) => {
 		.catch(err)
 	})
 }
-// const popPersonArray = (personId) => {
-// Household
-// .find()
-// .populate({
-// 	path: 'person',
-// 	match: { }
-// })
-// }
 
 module.exports.getAllPersons = (req, res, err) => {
 	Person
@@ -45,6 +32,7 @@ module.exports.getAllPersons = (req, res, err) => {
 	.then((person) => {
 		res.json(person)
 	})
+	.catch(err)
 }
 
 module.exports.addResource = ({body}, res, err) => {
@@ -79,6 +67,7 @@ module.exports.getPersonByHousehold = ({params: {id}}, res, err) => {
 	Person
 	.find({householdId: id})
 	.then((data) => {
+		console.log('person by hh')
 		res.json(data)
 	})
 	.catch(err)

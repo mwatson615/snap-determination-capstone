@@ -5,10 +5,12 @@ const { json } = require('body-parser');
 const mongoose = require('mongoose');
 const { Router } = require('express');
 const router = Router();
+// const cors = require('cors');
 
 const routes = require('./routes/router.js')
 
 const app = express();
+// app.use(cors());
 const PORT = process.env.PORT || 3000
 
 const MONGODB_URL = process.env.MONGODB_URL || 'mongodb://localhost:27017/snapdb'
@@ -16,6 +18,13 @@ const MONGODB_URL = process.env.MONGODB_URL || 'mongodb://localhost:27017/snapdb
 app.use(json());
 
 mongoose.Promise = Promise;
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, POST,HEAD, OPTIONS,PUT, DELETE, PATCH");
+  next();
+});
 
 app.use('/api/v1/', routes)
 
