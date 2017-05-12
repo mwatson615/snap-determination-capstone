@@ -1,10 +1,14 @@
-app.controller('DemoCtrl', function($scope, $route, personFactory, $location) {
+app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $cookies) {
 
+	$scope.householdId = $cookies.get('householdId')
 	$scope.hasSSN = false;
 	$scope.hasResource = false;
 	$scope.hasEmployer = false;
 	$scope.personArray = []
+	console.log($scope.householdId)
 
+
+//  MOVE TO APP FOR RESOLVE -- TODO
 	$scope.getPersonByHH = (householdId) => {
 		personFactory.getPersonByHousehold(householdId)
 				.then((data) => {
@@ -26,8 +30,7 @@ app.controller('DemoCtrl', function($scope, $route, personFactory, $location) {
 
 	$scope.getDemo = () => {
 		let newPerson = {
-			"householdId": "5915f3941b92b128c04d078e",
-		// 	// $scope.householdId,
+			"householdId": $scope.householdId,
 			"firstName": $scope.firstName,
 			"age": $scope.age,
 			"hasResource": $scope.hasResource,

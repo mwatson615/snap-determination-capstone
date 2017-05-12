@@ -1,4 +1,4 @@
-app.controller('HomeCtrl', function($scope, $location, householdFactory) {
+app.controller('HomeCtrl', function($scope, $location, householdFactory, $cookies) {
 
 	$scope.proceed = () => {
 		let newHousehold = {
@@ -8,8 +8,10 @@ app.controller('HomeCtrl', function($scope, $location, householdFactory) {
 		householdFactory.createHousehold(newHousehold)
 		.then((results) => {
 			$scope.householdId = results.data._id
-			console.log($scope.householdId)
+			$cookies.put('householdId', $scope.householdId);
+			var test = $cookies.get('householdId')
+			console.log(test)
 		})
-		$location.url('/demo')
+		// $location.url('/demo')
 	}
 })

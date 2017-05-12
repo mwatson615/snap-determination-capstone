@@ -5,6 +5,7 @@ app.factory('personFactory', ($http, $q, $route, $location) => {
 		createPerson : (newPerson) => {
 			return $http.post('http://localhost:3000/api/v1/person/new', JSON.stringify(newPerson))
 			.then((data) => {
+				console.log(data.data, 'person created')
 				return data.data
 			})
 			.catch((err) => {
@@ -34,6 +35,12 @@ app.factory('personFactory', ($http, $q, $route, $location) => {
 				let errorCode = err.code;
 				let errorMessage = err.message;
 				alert(errorCode + " : " + errorMessage)
+			})
+		},
+		addResource : (resources) => {
+			return $http.patch('http://localhost:3000/api/v1/person/addResource')
+			.then((data) => {
+				console.log(data)
 			})
 		}
 	}
