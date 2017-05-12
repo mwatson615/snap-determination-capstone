@@ -17,9 +17,9 @@ module.exports.addPerson = ({body}, res, err) => {
 		.findOneAndUpdate(
 			{_id: data.householdId},
 			{$push: {peopleArray: data._id}},
-			{new: true})
+			{upsert: true})
 		.then((data) => {
-			console.log(data, "then")
+			console.log("then", data)
 			res.json(data)
 		})
 		.catch(err)
@@ -57,6 +57,16 @@ module.exports.addIncome = ({body}, res, err) => {
 		payArray: body.payArray},
 		{upsert: true}
 	)
+	.then((data) => {
+		res.json(data)
+	})
+	.catch(err)
+}
+
+module.exports.getPersonById = ({params: {id}}, res, err) => {
+	Person
+	.findById({id},
+		'_id', 'hasResource', 'hasEmployer')
 	.then((data) => {
 		res.json(data)
 	})

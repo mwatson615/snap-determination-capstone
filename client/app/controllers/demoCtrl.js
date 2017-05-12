@@ -1,19 +1,42 @@
-app.controller('DemoCtrl', function($scope) {
+app.controller('DemoCtrl', function($scope, $route, personFactory, $location) {
 
 	$scope.hasSSN = false;
 	$scope.hasResource = false;
 	$scope.hasEmployer = false;
+	$scope.personArray = []
+
+	$scope.getPersonByHH = (householdId) => {
+		personFactory.getPersonByHousehold(householdId)
+				.then((data) => {
+					console.log(data, "person data")
+					for (i = 0; i < data.length; i++) {
+						if (data[i].age > 17 && data[i].hasResource === true) {
+							console.log('adult resources')
+							$location.url('/resources')
+						} else if (data[i].age > 17 && data[i].hasEmployer === true) {
+							console.log('adult income')
+							$location.url('/income')
+						} else {
+							console.log('no adult resources or income')
+							$location.url('/shelter')
+						}
+					}
+				})
+	}
 
 	$scope.getDemo = () => {
 		let newPerson = {
-			"householdId": $scope.householdId,
+			"householdId": "5915f3941b92b128c04d078e",
+		// 	// $scope.householdId,
 			"firstName": $scope.firstName,
 			"age": $scope.age,
-			"hasSSN": $scope.hasSSN,
 			"hasResource": $scope.hasResource,
 			"hasEmployer": $scope.hasEmployer
 		}
-	console.log(newPerson)
-
+		personFactory.createPerson(newPerson)
+		.then((results) => {
+			console.log(results)
+			$scope.getPersonByHH(results._id)
+			})
 	}
 })

@@ -1,5 +1,5 @@
 app.controller('HomeCtrl', function($scope, $location, householdFactory) {
-	
+
 	$scope.proceed = () => {
 		let newHousehold = {
 			"zipcode": $scope.zipcode,
@@ -10,6 +10,6 @@ app.controller('HomeCtrl', function($scope, $location, householdFactory) {
 			$scope.householdId = results.data._id
 			console.log($scope.householdId)
 		})
-		// $location.url('/demo')
+		$location.url('/demo')
 	}
 })

@@ -5,12 +5,11 @@ const { json } = require('body-parser');
 const mongoose = require('mongoose');
 const { Router } = require('express');
 const router = Router();
-// const cors = require('cors');
 
 const routes = require('./routes/router.js')
 
 const app = express();
-// app.use(cors());
+
 const PORT = process.env.PORT || 3000
 
 const MONGODB_URL = process.env.MONGODB_URL || 'mongodb://localhost:27017/snapdb'

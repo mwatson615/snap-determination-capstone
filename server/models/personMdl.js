@@ -7,7 +7,6 @@ const personSchema = {
 	"householdId": {type: Schema.Types.ObjectId, ref: 'Household'},
 	"firstName": String,
 	"age": Number,
-	"hasSSN": Boolean,
 	"hasResource": Boolean,
 	"resourceType": [String],
 	"resourceAmount": [Number],
