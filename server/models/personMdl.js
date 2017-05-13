@@ -13,6 +13,7 @@ const personSchema = {
 	"hasEmployer": Boolean,
 	"employerName": String,
 	"payArray": [Number],
+	"payFrequency": String,
 	"monthlyIncome": Number
 }
 

@@ -1,7 +1,26 @@
-app.controller('IncomeCtrl', function($scope, $cookies) {
-	$(document).ready(function() {
-		$('select').material_select();
-	});
+app.controller('IncomeCtrl', function($scope, $cookies, personFactory) {
+	// $(document).ready(function() {
+	// 	$('select').material_select();
+	// });
+
+	let householdId = $cookies.get('householdId')
+	console.log(householdId)
+	$scope.people = [];
+	$scope.personId = [];
+
+	personFactory.getPersonByHousehold(householdId)
+	.then((data) => {
+		for (i = 0; i < data.length; i++) {
+			$scope.people.push(data[i]);
+			$scope.personId.push(data[i]._id);
+		console.log($scope.personId[i])
+		}
+	})
+	.then(() => {
+		$(document).ready(function() {
+			$('select').material_select();
+		});
+	})
 
 	$scope.householdId = $cookies.get('householdId')
 	$scope.payArray = [];
@@ -30,14 +49,22 @@ app.controller('IncomeCtrl', function($scope, $cookies) {
 	}
 
 	$scope.getIncome = () => {
+		for (let i = 0; i < $scope.personId.length; i++) {
+			let personId = $scope.personId[i]
 		$scope.getSum()
 		$scope.calculateMonthly()
 		let employment = {
+			"personId": personId,
 			"employer": $scope.employer,
 			"payFrequency": $scope.payFrequency,
 			"payStubs": $scope.payArray,
 			"monthlyIncome": monthlyIncome
 		}
-		console.log(employment)
+		// console.log(employment)
+		personFactory.addIncome(employment)
+		.then((data) => {
+			console.log(data, "ctrl income data")
+		})
+	}
 	}
 })

@@ -38,9 +38,17 @@ app.factory('personFactory', ($http, $q, $route, $location) => {
 			})
 		},
 		addResource : (resources) => {
-			return $http.patch('http://localhost:3000/api/v1/person/addResource')
+			return $http.patch('http://localhost:3000/api/v1/person/addResource', JSON.stringify(resources))
+			.then((data) => {
+				console.log(data.data)
+				return data.data
+			})
+		},
+		addIncome : (employment) => {
+			return $http.patch('http://localhost:3000/api/v1/person/addIncome', JSON.stringify(employment))
 			.then((data) => {
 				console.log(data)
+				return data.data
 			})
 		}
 	}

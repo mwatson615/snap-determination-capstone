@@ -1,24 +1,24 @@
 <h1>Resource</h1>
 
  <!-- select options for resource type -->
- <form class="col s12">
+ <form class="col s12" ng-repeat="person in people">
       <div class="row singlePersonResource">
-      <h5>Name</h5>
+      <h5>{{person.firstName}}</h5>
     	<div class="input-field col s4">
-		    <select ng-model="resType">
+		    <select id="resType" ng-model="resType">
 		      <option value="checking">Checking</option>
 		      <option value="savings">Savings</option>
 		      <option value="stocks">Stocks</option>
 		    </select>
-		    <label>Type of Resource</label>
+		    <label for="resType">Type of Resource</label>
 		</div>
 		 <div class="input-field col s4">
-          <input id="balance" ng-model="resBalance" type="text" class="validate">
+          <input id="balance" ng-model="resBalance" type="number" class="validate">
           <label for="balance">Amount</label>
         </div>
         <a class="btn-floating btn-medium waves-effect waves-light green" ng-click="addResource()"><i class="material-icons">add</i></a>
       </div>
  </form>
  <div class="center">
-<a class="waves-effect waves-light btn" ng-click="getResources()">Continue</a>
+<a class="waves-effect waves-light btn" ng-click="saveResources()">Continue</a>
 </div>

@@ -35,29 +35,42 @@ module.exports.getAllPersons = (req, res, err) => {
 	.catch(err)
 }
 
-module.exports.addResource = ({params: {id}}, res, err) => {
+module.exports.addResource = ({body}, res, err) => {
+	console.log(body, "first check")
 	Person
 	.findOneAndUpdate(
-		{_id: id},
+		{_id: body.personId},
 		{resourceType: body.resourceType,
-		resourceAmount: body.resourceAmount},
-		{upsert: true}
-	)
+		resourceAmount: body.resourceBalance},
+		{upsert: true})
 	.then((data) => {
-		res.json(data)
+		console.log(data, "data")
+	// 	// Household
+	// 	// .findOneAndUpdate(
+	// 	// 	{_id: data.householdId},
+	// 	// 	{$push: {peopleArray: data._id}},
+	// 	// 	{upsert: true})
+	// 	// .then((data) => {
+	// 	// 	console.log("then", data)
+	// 	// 	res.json(data)
+	// 	// })
 	})
 	.catch(err)
 }
 
 module.exports.addIncome = ({body}, res, err) => {
+	console.log(body, "first check")
 	Person
 	.findOneAndUpdate(
-		{_id: body.id},
-		{employerName: body.employerName,
-		payArray: body.payArray},
+		{_id: body.personId},
+		{employerName: body.employer,
+		payFrequency: body.payFrequency,
+		payArray: body.payStubs,
+		monthlyIncome: body.monthlyIncome},
 		{upsert: true}
 	)
 	.then((data) => {
+		console.log(data, "income data")
 		res.json(data)
 	})
 	.catch(err)
