@@ -11,7 +11,7 @@ const householdSchema = {
 	'shelterPayFrequency': String,
 	'shelterCost': Number,
 	'paysSUA': Boolean,
-	'totalCountableIC': Number,
+	'totalCountableIC': [Number],
 	'totalResources': Number,
 	'peopleArray': [{type: Schema.Types.ObjectId, refPath: 'Person._id'}]
 }
