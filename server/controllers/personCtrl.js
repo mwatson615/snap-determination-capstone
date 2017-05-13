@@ -35,10 +35,10 @@ module.exports.getAllPersons = (req, res, err) => {
 	.catch(err)
 }
 
-module.exports.addResource = ({body}, res, err) => {
+module.exports.addResource = ({params: {id}}, res, err) => {
 	Person
 	.findOneAndUpdate(
-		{_id: body.id},
+		{_id: id},
 		{resourceType: body.resourceType,
 		resourceAmount: body.resourceAmount},
 		{upsert: true}

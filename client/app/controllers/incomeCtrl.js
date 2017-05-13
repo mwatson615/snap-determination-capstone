@@ -1,7 +1,9 @@
-app.controller('IncomeCtrl', function($scope) {
+app.controller('IncomeCtrl', function($scope, $cookies) {
 	$(document).ready(function() {
 		$('select').material_select();
 	});
+
+	$scope.householdId = $cookies.get('householdId')
 	$scope.payArray = [];
 	let divider = 8,
 	multiplier = 4.3,
