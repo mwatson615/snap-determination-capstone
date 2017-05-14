@@ -13,6 +13,18 @@ app.factory('householdFactory', ($http) => {
 				let errorMessage = err.message;
 				alert(errorCode + " : " + errorMessage)
 			})
+		},
+		addShelter : (shelter) => {
+			return $http.patch('http://localhost:3000/api/v1/household/addShelter', JSON.stringify(shelter))
+			.then((data) => {
+				console.log(data, "shelter created")
+				return data
+			})
+			.catch((err) => {
+				let errorCode = err.code;
+				let errorMessage = err.message;
+				alert(errorCode + " : " + errorMessage)
+			})
 		}
 	}
 })

@@ -35,13 +35,12 @@ module.exports.getHouseholdZip = ({params: {zip}}, res, err) => {
 module.exports.addShelter = ({body}, res, err) => {
 	Household
 	.findOneAndUpdate(
-		{_id: body.id},
+		{_id: body.householdId},
 		{shelterType: body.shelterType,
 		shelterPayFrequency: body.shelterPayFrequency,
 		shelterCost: body.shelterCost,
 		paysSUA: body.paysSUA},
-		{upsert: true}
-	)
+		{upsert: true})
 	.then((data) => {
 		res.json(data)
 	})
