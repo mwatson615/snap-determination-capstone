@@ -44,27 +44,26 @@ module.exports.addResource = ({body}, res, err) => {
 	Person
 	.findOneAndUpdate(
 		{_id: body.personId},
-		{resourceType: body.resourceType,
-		resourceAmount: body.resourceBalance},
-		{upsert: true})
+		{resourceAmount: body.resourceBalance},
+		{new: true})
 	.then((data) => {
-		console.log(data, "data")
-	// 	// Household
-	// 	// .findOneAndUpdate(
-	// 	// 	{_id: data.householdId},
-	// 	// 	{$push: {peopleArray: data._id}},
-	// 	// 	{upsert: true})
-	// 	// .then((data) => {
-	// 	// 	console.log("then", data)
-	// 	// 	res.json(data)
-	// 	// })
+		// console.log(data, "data")
+		Household
+		.findOneAndUpdate(
+			{_id: data.householdId},
+			{$push: {totalResources: data.resourceAmount}},
+			{new: true})
+		.then((data) => {
+			console.log("then", data)
+			res.json(data)
+		})
 	})
 	.catch(err)
 }
 
 // ADDS INCOME TO PERSON AND MONTHLY INCOME TO HOUSEHOLD
 module.exports.addIncome = ({body}, res, err) => {
-	console.log(body, "first check")
+	// console.log(body, "first check")
 	Person
 	.findOneAndUpdate(
 		{_id: body.personId},

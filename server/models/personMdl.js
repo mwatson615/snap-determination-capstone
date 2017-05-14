@@ -9,7 +9,7 @@ const personSchema = {
 	"age": Number,
 	"hasResource": Boolean,
 	"resourceType": [String],
-	"resourceAmount": [Number],
+	"resourceAmount": Number,
 	"hasEmployer": Boolean,
 	"employerName": String,
 	"payArray": [Number],

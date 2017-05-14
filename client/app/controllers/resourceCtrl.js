@@ -25,24 +25,24 @@ app.controller('ResourceCtrl', function($scope, $cookies, personFactory) {
 	// })
 
 	// let resourceType = [],
-	// let resourceBalance = [];
+	let resourceBalance = [];
 
 	// $scope.resType = '';
 	// $scope.resBalance = '';
 	$scope.saveResources = (balance) => {
-	// 	for (i = 0; i < $scope.people.length; i++) {
+		for (i = 0; i < $scope.personArray.length; i++) {
 	// // 	resourceType.push($scope.resType[i])
-	// 	resourceBalance.push($scope.resBalance)
-	// }
+		resourceBalance.push($scope.balance)
 		let resources = {
-			"personId": personIdArray,
+			"personId": personIdArray[i],
 			// "resourceType" : $scope.resTyp,
-			"resourceBalance": $scope.balance
+			"resourceBalance": resourceBalance[i]
 		}
+		personFactory.addResource(resources)
+		.then((data) => {
+			console.log(data)
+		})
 		console.log(resources)
-		// personFactory.addResource(resources)
-		// .then((data) => {
-		// 	console.log(data)
-		// })
+	}
 	}
 })
