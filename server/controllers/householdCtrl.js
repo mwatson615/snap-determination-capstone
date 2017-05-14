@@ -65,3 +65,15 @@ module.exports.getHouseholdByPerson = ({params: {id}}, res, err) => {
 	})
 	.catch(err)
 }
+
+module.exports.getHouseholdResults = ({params: {id}}, res, err) => {
+	console.log('hh results')
+	Household
+	.find({_id: id})
+	.then((data) => {
+		data.shelterCost = 800;
+		console.log(data)
+		res.json(data)
+	})
+	.catch(err)
+}

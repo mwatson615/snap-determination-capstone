@@ -1,4 +1,4 @@
-app.controller('ShelterCtrl', function($scope, $cookies, householdFactory) {
+app.controller('ShelterCtrl', function($scope, $cookies, householdFactory, $location) {
 	$(document).ready(function() {
 		$('select').material_select();
 	});
@@ -22,6 +22,7 @@ app.controller('ShelterCtrl', function($scope, $cookies, householdFactory) {
 		householdFactory.addShelter(shelter)
 		.then((data) => {
 			console.log(data, "shelter ctrl")
+			// $location.url('/results')
 		})
 	}
 })
