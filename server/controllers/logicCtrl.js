@@ -110,7 +110,8 @@ sua7 = 375
 
 //max shelter ded is 517
 
-module.exports.getSua = (householdSize) => {
+module.exports.getSua = (householdSize, paysSUA) => {
+	if (paysSUA === true) {
 	let usedSua = '';
 	switch(householdSize) {
 		case 1:
@@ -132,10 +133,11 @@ module.exports.getSua = (householdSize) => {
 			usedSua = sua6;
 			break;
 		case (householdSize >= 7):
-			usedsua = sua7
+			usedSua = sua7
 			break;
 	}
-	return usedStd;
+	return usedSua;
+	}
 }
 
 const p1Net = 990,

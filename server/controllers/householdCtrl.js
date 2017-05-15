@@ -75,7 +75,13 @@ module.exports.getHouseholdResults = ({params: {id}}, res, err) => {
 	.then((data) => {
 		let householdSize = data[0].peopleArray.length;
 		let resourceSum = getArraySum(data[0].totalResources)
-		console.log(resourceSum)
+		let incomeSum = getArraySum(data[0].totalCountableIC)
+		let minusEID = earnedICDed(incomeSum)
+		let monthlyShelter = convertHousing(data[0].shelterPayFrequency, data[0].shelterCost)
+		let sua = getSua(householdSize, data[0].paysSUA)
+		let std = getStd(householdSize)
+		console.log(minusEID)
+		console.log(data)
 		res.json(data)
 	})
 	.catch(err)
