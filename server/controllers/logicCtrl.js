@@ -3,7 +3,6 @@
 const resourceLimit = 2250;
 
 let resourceEligible = false,
-netEligible = false,
 grossEligible = false;
 
 module.exports.getArraySum = (moneyArray) => {
@@ -110,6 +109,10 @@ sua7 = 375
 
 //max shelter ded is 517
 
+module.exports.calcNet = (minusEID, std) => {
+	return minusEID - std;
+}
+
 module.exports.getSua = (householdSize, paysSUA) => {
 	if (paysSUA === true) {
 	let usedSua = '';
@@ -140,6 +143,15 @@ module.exports.getSua = (householdSize, paysSUA) => {
 	}
 }
 
+module.exports.shelterDed = (adjIncome, shelter, sua) => {
+	let shelterSum = shelter + sua;
+	let shelterDed = shelterSum - (adjIncome / 2)
+		if (shelterDed > 517) {
+			shelterDed = 517;
+		}
+	return shelterDed;
+}
+
 const p1Net = 990,
 p2Net = 1335,
 p3Net = 1680,
@@ -150,30 +162,35 @@ p7Net = 3061,
 p8Net = 3408;
 // each additional is 347
 
+module.exports.getNet = (adjIncome, shelterDed) => {
+	return adjIncome - shelterDed;
+}
+
 module.exports.netTest = (householdSize, netIncome) => {
+	let netEligible = false;
 	switch(householdSize) {
-		case 1 && netIncome <= p1Net:
+		case 1 && netIncome < p1Net:
 			//fallthrough
-		case 2 && netIncome <= p2Net:
+		case 2 && netIncome < p2Net:
 			//fallthrough
-		case 3 && netIncome <= p3Net:
+		case 3 && netIncome < p3Net:
 			//fallthrough
-		case 4 && netIncome <= p4Net:
+		case 4 && netIncome < p4Net:
 			//fallthrough
-		case 5 && netIncome <= p5Net:
+		case 5 && netIncome < p5Net:
 			//fallthrough
-		case 6 && netIncome <= p6Net:
+		case 6 && netIncome < p6Net:
 			//fallthrough
-		case 7 && netIncome <= p7Net:
+		case 7 && netIncome < p7Net:
 			//fallthrough
-		case 8 && netIncome <= p8Net:
+		case 8 && netIncome < p8Net:
 			netEligible = true;
 			break;
 	}
 	return netEligible;
 	}
 
-module.exports.oneThird = (netIncome) => {
+module.exports.oneThirdCalc = (netIncome) => {
 	let benefit = netIncome * .3
 	return benefit
 }
@@ -187,6 +204,8 @@ max5 = 771,
 max6 = 925,
 max7 = 1022,
 max8 = 1169
+
+//half of adjustedIC = 450.7
 
 module.exports.getFinalBenefit = (householdSize, netIncome) => {
 	let finalBenefit = '';

@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 app.use(json());
 mongoose.Promise = Promise;
 
-const { getArraySum, resourceTest, convertHousing, grossTest, earnedICDed, getStd, getSua, netTest, oneThird, getFinalBenefit} = require('./logicCtrl')
+const { getArraySum, resourceTest, convertHousing, grossTest, earnedICDed, getStd, getSua, netTest, oneThirdCalc, getFinalBenefit, shelterDed, calcNet, getNet} = require('./logicCtrl')
 
 const Household = require('../models/householdMdl');
 
@@ -58,7 +58,6 @@ module.exports.getHouseholdById = ({params: {id}}, res, err) => {
 }
 
 module.exports.getHouseholdByPerson = ({params: {id}}, res, err) => {
-	
 	console.log('hh by person')
 	Household
 	.find({peopleArray: id})
@@ -76,12 +75,38 @@ module.exports.getHouseholdResults = ({params: {id}}, res, err) => {
 		let householdSize = data[0].peopleArray.length;
 		let resourceSum = getArraySum(data[0].totalResources)
 		let incomeSum = getArraySum(data[0].totalCountableIC)
+		console.log(incomeSum)
+
 		let minusEID = earnedICDed(incomeSum)
+		console.log(minusEID, "income minus eid")
 		let monthlyShelter = convertHousing(data[0].shelterPayFrequency, data[0].shelterCost)
+		console.log(monthlyShelter, "monthly shelter")
+
 		let sua = getSua(householdSize, data[0].paysSUA)
+		console.log(sua, "sua")
+
 		let std = getStd(householdSize)
-		console.log(minusEID)
-		console.log(data)
+		console.log(std, "std")
+
+		let adjustedIC = calcNet(minusEID, std)
+		console.log(adjustedIC, "adjusted ic")
+
+		let shelterDeduction = shelterDed(adjustedIC, monthlyShelter, sua)
+		console.log(shelterDeduction, "shelter ded")
+
+		let netIncome = getNet(adjustedIC, shelterDeduction)
+		console.log(netIncome, "net income")
+
+		let netEligible = netTest(householdSize, netIncome)
+		console.log(netEligible, "net eligible")
+
+		let oneThird = oneThirdCalc(netIncome)
+		console.log(oneThird, "one third")
+
+		let benefitAmount = getFinalBenefit(householdSize, oneThird)
+		console.log(benefitAmount, "benefit amount")
+
+		// console.log(data)
 		res.json(data)
 	})
 	.catch(err)
