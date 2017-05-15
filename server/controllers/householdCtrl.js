@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 app.use(json());
 mongoose.Promise = Promise;
 
+const { getArraySum, resourceTest, convertHousing, grossTest, earnedICDed, getStd, getSua, netTest, oneThird, getFinalBenefit} = require('./logicCtrl')
+
 const Household = require('../models/householdMdl');
 
 module.exports.addHousehold = ({body}, res, next) => {
@@ -71,8 +73,9 @@ module.exports.getHouseholdResults = ({params: {id}}, res, err) => {
 	Household
 	.find({_id: id})
 	.then((data) => {
-		data.shelterCost = 800;
-		console.log(data)
+		let householdSize = data[0].peopleArray.length;
+		let resourceSum = getArraySum(data[0].totalResources)
+		console.log(resourceSum)
 		res.json(data)
 	})
 	.catch(err)
