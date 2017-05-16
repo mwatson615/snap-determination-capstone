@@ -1,17 +1,17 @@
 <h1>Results</h1>
-<div ng-repeat="result in householdArray">
-<h3>${{}} per month</h3>
+<div>
+<h3>${{benefitAmount}} per month</h3>
 <div class="finalResult">
-	<p>Based on the information provided for a {{householdSize}} person household, you would likely be {{}} for SNAP benefits{{}}.  Remember, this is not an official determination.  The only way to know for sure is to apply with your local Department of Human Services or equivalent.</p>
+	<p>Based on the information provided for a {{householdSize}} person household, you would likely be {{eligible}} for SNAP benefits.  Remember, this is not an official determination.  The only way to know for sure is to apply with your local Department of Human Services or equivalent.</p>
 </div>
 <div class="finalIncome">
-	<p>How was this result calculated?  SNAP eligibility is based on several factors including household size, income, resources, and expenses.  For this simplified test, your gross income per pay period is calculated to create a gross monthly income, and all monthly gross incomes for the household are added together which in this case equals {{result.totalCountableIC}} per month.</p>
+	<p>How was this result calculated?  SNAP eligibility is based on several factors including household size, income, resources, and expenses.  For this simplified test, your gross income per pay period is calculated to create a gross monthly income, and all monthly gross incomes for the household are added together which in this case equals ${{totalIncome}} per month.</p>
 </div>
 <div class="finalResources">
-	<p>Resources can be complicated, and this test only uses the most common forms of checking or savings accounts and stocks.  Each household member's resources are added together to see if the household has more than $2250 in what is known as "liquid resources".  Your household's resources as entered are {{result.totalResources}}.</p>
+	<p>Resources can be complicated, and this test only uses the most common forms of checking or savings accounts and stocks.  Each household member's resources are added together to see if the household has more than $2250 in what is known as "liquid resources".  Your household's resources as entered are ${{totalResources}}.</p>
 </div>
 <div class="finalShelter">
-	<p>This test uses the most common expenses which are known as shelter costs.  You entered a {{result.shelterType}} expense of {{result.shelterCost}} per month based on the monthly formula (the same one for income).  You also entered that you {{paysSUA}} pay a major heating or cooling cost so you {{paysSUA}} get the Standard Utility deduction of {{}}.  That's just a way to give one large deduction each month instead of dealing with fluctuating seasonal costs.</p>
+	<p>This test uses common expenses which are known as shelter costs.  You entered a {{shelterType}} expense of ${{shelterCost}} per month based on the monthly formula (the same one for income).  You also entered that you {{paysSUA}} pay a major heating or cooling cost so you {{paysSUA}} get an excess shelter deduction of ${{shelterDed}}.  That's just a way to give one large deduction each month instead of dealing with fluctuating seasonal costs.</p>
 </div>
 </div>
 <div class="center">

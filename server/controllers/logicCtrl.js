@@ -104,10 +104,13 @@ module.exports.getFinalBenefit = (householdSize, netIncome) => {
 		case 8:
 			finalBenefit = max8 - netIncome;
 			break;
-	}
-	if (finalBenefit > 0) {
+		}
+		if (finalBenefit < 0) {
+			finalBenefit = 0;
+		}
+	// if (finalBenefit > 0) {
 	return finalBenefit;
-	} else {
-		return null;
-	}
+	// } else {
+	// 	return null;
+	// }
 }

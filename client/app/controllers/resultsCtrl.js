@@ -8,8 +8,13 @@ app.controller('ResultsCtrl', function($scope, $cookies, personFactory, househol
 		console.log(data)
 		let results = data.data
 		// $scope.householdArray = data.data
-		$scope.householdSize = results.peopleArray.length
-		$scope.totalResources = results.totalResources
+		$scope.householdSize = results.householdSize;
+		$scope.totalResources = results.resourceSum;
+		$scope.totalIncome = results.incomeSum;
+		$scope.benefitAmount = results.benefitAmount;
+		$scope.shelterCost = results.shelterCost;
+		$scope.shelterDed = results.shelterDeduction;
+		$scope.shelterType = results.shelterType;
 
 		if (results.paysSUA === true) {
 			$scope.paysSUA = 'do'
