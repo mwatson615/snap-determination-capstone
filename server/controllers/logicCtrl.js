@@ -2,8 +2,7 @@
 
 const resourceLimit = 2250;
 
-let resourceEligible = false,
-grossEligible = false;
+let resourceEligible = false;
 
 module.exports.getArraySum = (moneyArray) => {
 	let sum = moneyArray.reduce(function(acc, val) {
@@ -31,39 +30,19 @@ module.exports.convertHousing = (shelterFreq, shelterCost) => {
 	let monthlyShelter = shelterCost * shelterMult;
 	return monthlyShelter;
 }
-
-const p1Gross = 1287,
-p2Gross = 1736,
-p3Gross = 2184,
-p4Gross = 2633,
-p5Gross = 3081,
-p6Gross = 3530,
-p7Gross = 3980,
-p8Gross = 4430
+//1287
+const grossLimit = [1287, 1736, 2184, 2633, 3081, 3530, 3980,4430]
 //each additional is 451
 
-module.exports.grossTest = (householdSize, income) => {
-	switch(householdSize) {
-		case 1 && income <= p1Gross:
-			//fallthrough
-		case 2 && income <= p2Gross:
-			//fallthrough
-		case 3 && income <= p3Gross:
-			//fallthrough
-		case 4 && income <= p4Gross:
-			//fallthrough
-		case 5 && income <= p5Gross:
-			//fallthrough
-		case 6 && income <= p6Gross:
-			//fallthrough
-		case 7 && income <= p7Gross:
-			//fallthrough
-		case 8 && income <= p8Gross:
-			grossEligible = true;
-			break;
-	}
+module.exports.grossTest = (householdSize, grossIncome) => {
+	let grossEligible = false;
+	console.log(grossIncome, "gross check")
+	for (let i = 1; i <= 8; i++)
+		if (householdSize === i && grossIncome <= grossLimit[i-1]) {
+		grossEligible = true
+		}
 	return grossEligible;
-}
+	}
 
 const earnedDed = .20; //percent
 
@@ -155,7 +134,7 @@ module.exports.shelterDed = (adjIncome, shelter, sua) => {
 module.exports.getNet = (adjIncome, shelterDed) => {
 	return adjIncome - shelterDed;
 }
-//990
+
 const netLimit = [990, 1335, 1680, 2025, 2370, 2715, 3061, 3408];
 // each additional is 347
 
@@ -164,31 +143,8 @@ module.exports.netTest = (householdSize, netIncome) => {
 	console.log(netIncome, "net check")
 	for (let i = 1; i <= 8; i++)
 		if (householdSize === i && netIncome <= netLimit[i-1]) {
-			// console.log(netLimit[0])
 		netEligible = true
 		}
-
-	// switch(householdSize) {
-	// 	case 1:
-	// 	case netIncome < p1Net:
-	// 		netEligible = true;
-	// 		break;
-	// 	case 2 && netIncome < p2Net:
-	// 		netEligible = true;
-	// 	case 3 && netIncome < p3Net:
-	// 		netEligible = true;
-	// 	case 4 && netIncome < p4Net:
-	// 		netEligible = true;
-	// 	case 5 && netIncome < p5Net:
-	// 		//fallthrough
-	// 	case 6 && netIncome < p6Net:
-	// 		//fallthrough
-	// 	case 7 && netIncome < p7Net:
-	// 		//fallthrough
-	// 	case 8 && netIncome < p8Net:
-	// 		break;
-	// 		// netEligible = true;
-	// 	}
 	return netEligible;
 	}
 
