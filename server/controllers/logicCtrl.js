@@ -1,9 +1,5 @@
 'use strict'
 
-const resourceLimit = 2250;
-
-let resourceEligible = false;
-
 module.exports.getArraySum = (moneyArray) => {
 	let sum = moneyArray.reduce(function(acc, val) {
 		return acc + val;
@@ -11,12 +7,15 @@ module.exports.getArraySum = (moneyArray) => {
 	return sum;
 	}
 
+const resourceLimit = 2250;
 
 module.exports.resourceTest = (resourceSum) => {
+	let resourceEligible = false;
+	// console.log(resourceSum, "resource test sum")
 	if (resourceSum <= resourceLimit) {
 		resourceEligible = true;
-		return resourceEligible;
 	}
+		return resourceEligible;
 }
 
 let shelterMult = 1;
@@ -124,10 +123,10 @@ module.exports.getSua = (householdSize, paysSUA) => {
 
 module.exports.shelterDed = (adjIncome, shelter, sua) => {
 	let shelterSum = shelter + sua;
-	let shelterDed = shelterSum - (adjIncome / 2)
-		if (shelterDed > 517) {
-			shelterDed = 517;
+		if (shelterSum > 517) {
+			shelterSum = 517;
 		}
+	let shelterDed = shelterSum - (adjIncome / 2)
 	return shelterDed;
 }
 

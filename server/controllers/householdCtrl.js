@@ -74,11 +74,15 @@ module.exports.getHouseholdResults = ({params: {id}}, res, err) => {
 	.then((data) => {
 		let householdSize = data[0].peopleArray.length;
 		let resourceSum = getArraySum(data[0].totalResources)
+		// console.log(resourceSum, "resource sum")
 		let incomeSum = getArraySum(data[0].totalCountableIC)
-		console.log(incomeSum)
+		console.log(incomeSum, "gross sum")
+
+		let resourceEligible = resourceTest(resourceSum)
+		// console.log(resourceEligible, "res elig")
 
 		let grossEligible = grossTest(householdSize, incomeSum)
-		console.log(grossEligible, "gross eligible")
+		// console.log(grossEligible, "gross eligible")
 
 		let minusEID = earnedICDed(incomeSum)
 		console.log(minusEID, "income minus eid")
