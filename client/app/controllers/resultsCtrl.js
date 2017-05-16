@@ -8,6 +8,20 @@ app.controller('ResultsCtrl', function($scope, $cookies, personFactory, househol
 		console.log(data)
 		let results = data.data
 		// $scope.householdArray = data.data
+		if (results.resourceEligible === false) {
+			$scope.resourceEligible = false
+			$scope.eligible = "ineligible"
+		} else if (results.grossEligible === false) {
+			$scope.grossEligible = false
+			$scope.eligible = "ineligible"
+		} else if (results.netEligible === false) {
+			$scope.netEligible = false
+			$scope.eligible = "ineligible"
+		} else {
+			$scope.eligible = "eligible"
+		}
+
+
 		$scope.householdSize = results.householdSize;
 		$scope.totalResources = results.resourceSum;
 		$scope.totalIncome = results.incomeSum;
@@ -23,9 +37,9 @@ app.controller('ResultsCtrl', function($scope, $cookies, personFactory, househol
 		}
 	})
 
-	// $scope.testAgain = () => {
-	// 	$cookies.remove('householdId')
-	// 	$location.url('/')
-	// }
+	$scope.testAgain = () => {
+		$cookies.remove('householdId')
+		$location.url('/')
+	}
 
 })
