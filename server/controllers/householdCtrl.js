@@ -76,10 +76,12 @@ module.exports.getHouseholdResults = ({params: {id}}, res, err) => {
 	Household
 	.find({_id: id})
 	.then((data) => {
-		let householdSize = data[0].peopleArray.length;
-		let resourceSum = getArraySum(data[0].totalResources)
+		let dataObj = data[0].toObject()
+
+		let householdSize = dataObj.peopleArray.length;
+		let resourceSum = getArraySum(dataObj.totalResources)
 		// console.log(resourceSum, "resource sum")
-		let incomeSum = getArraySum(data[0].totalCountableIC)
+		let incomeSum = getArraySum(dataObj.totalCountableIC)
 		console.log(incomeSum, "gross sum")
 
 		let resourceEligible = resourceTest(resourceSum)
@@ -90,10 +92,10 @@ module.exports.getHouseholdResults = ({params: {id}}, res, err) => {
 
 		let minusEID = earnedICDed(incomeSum)
 		console.log(minusEID, "income minus eid")
-		let monthlyShelter = convertHousing(data[0].shelterPayFrequency, data[0].shelterCost)
+		let monthlyShelter = convertHousing(dataObj.shelterPayFrequency, dataObj.shelterCost)
 		console.log(monthlyShelter, "monthly shelter")
 
-		let sua = getSua(householdSize, data[0].paysSUA)
+		let sua = getSua(householdSize, dataObj.paysSUA)
 		console.log(sua, "sua")
 
 		let std = getStd(householdSize)
@@ -117,11 +119,11 @@ module.exports.getHouseholdResults = ({params: {id}}, res, err) => {
 		let benefitAmount = getFinalBenefit(householdSize, oneThird)
 		console.log(benefitAmount, "benefit amount")
 
-		data[0].benefitAmount = benefitAmount;
-		data[0].netEligible = netEligible;
-		data[0].grossEligible = grossEligible;
-		console.log(data[0], "data")
-		res.json(data)
+		dataObj.grossEligible = grossEligible;
+		dataObj.shelterDeduction = shelterDeduction;
+		dataObj.benefitAmount = benefitAmount
+		console.log(dataObj, "data after stuff")
+		res.json(dataObj)
 		})
 	.catch(err)
 }

@@ -105,5 +105,9 @@ module.exports.getFinalBenefit = (householdSize, netIncome) => {
 			finalBenefit = max8 - netIncome;
 			break;
 	}
+	if (finalBenefit > 0) {
 	return finalBenefit;
+	} else {
+		return null;
+	}
 }
