@@ -77,6 +77,9 @@ module.exports.getHouseholdResults = ({params: {id}}, res, err) => {
 		let incomeSum = getArraySum(data[0].totalCountableIC)
 		console.log(incomeSum)
 
+		let grossEligible = grossTest(householdSize, incomeSum)
+		console.log(grossEligible, "gross eligible")
+
 		let minusEID = earnedICDed(incomeSum)
 		console.log(minusEID, "income minus eid")
 		let monthlyShelter = convertHousing(data[0].shelterPayFrequency, data[0].shelterCost)

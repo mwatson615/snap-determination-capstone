@@ -152,47 +152,49 @@ module.exports.shelterDed = (adjIncome, shelter, sua) => {
 	return shelterDed;
 }
 
-const p1Net = 990,
-p2Net = 1335,
-p3Net = 1680,
-p4Net = 2025,
-p5Net = 2370,
-p6Net = 2715,
-p7Net = 3061,
-p8Net = 3408;
-// each additional is 347
-
 module.exports.getNet = (adjIncome, shelterDed) => {
 	return adjIncome - shelterDed;
 }
+//990
+const netLimit = [990, 1335, 1680, 2025, 2370, 2715, 3061, 3408];
+// each additional is 347
 
 module.exports.netTest = (householdSize, netIncome) => {
 	let netEligible = false;
-	switch(householdSize) {
-		case 1 && netIncome < p1Net:
-			//fallthrough
-		case 2 && netIncome < p2Net:
-			//fallthrough
-		case 3 && netIncome < p3Net:
-			//fallthrough
-		case 4 && netIncome < p4Net:
-			//fallthrough
-		case 5 && netIncome < p5Net:
-			//fallthrough
-		case 6 && netIncome < p6Net:
-			//fallthrough
-		case 7 && netIncome < p7Net:
-			//fallthrough
-		case 8 && netIncome < p8Net:
-			netEligible = true;
-			break;
-	}
+	console.log(netIncome, "net check")
+	for (let i = 1; i <= 8; i++)
+		if (householdSize === i && netIncome <= netLimit[i-1]) {
+			// console.log(netLimit[0])
+		netEligible = true
+		}
+
+	// switch(householdSize) {
+	// 	case 1:
+	// 	case netIncome < p1Net:
+	// 		netEligible = true;
+	// 		break;
+	// 	case 2 && netIncome < p2Net:
+	// 		netEligible = true;
+	// 	case 3 && netIncome < p3Net:
+	// 		netEligible = true;
+	// 	case 4 && netIncome < p4Net:
+	// 		netEligible = true;
+	// 	case 5 && netIncome < p5Net:
+	// 		//fallthrough
+	// 	case 6 && netIncome < p6Net:
+	// 		//fallthrough
+	// 	case 7 && netIncome < p7Net:
+	// 		//fallthrough
+	// 	case 8 && netIncome < p8Net:
+	// 		break;
+	// 		// netEligible = true;
+	// 	}
 	return netEligible;
 	}
 
 module.exports.oneThirdCalc = (netIncome) => {
 	let benefit = netIncome * .3
-	return benefit
+	return Math.ceil(benefit)
 }
 
 // max benefit amount
