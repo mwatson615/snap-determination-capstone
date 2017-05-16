@@ -6,7 +6,11 @@ const mongoose = require('mongoose');
 app.use(json());
 mongoose.Promise = Promise;
 
-const { getArraySum, resourceTest, convertHousing, grossTest, earnedICDed, getStd, getSua, netTest, oneThirdCalc, getFinalBenefit, shelterDed, calcNet, getNet} = require('./logicCtrl')
+const { getStd, getSua, getFinalBenefit} = require('./logicCtrl')
+
+const { getArraySum, convertHousing, earnedICDed, shelterDed, getNet, oneThirdCalc, calcNet } = require('./calcCtrl')
+
+const { resourceTest, grossTest, netTest } = require('./testCtrl')
 
 const Household = require('../models/householdMdl');
 
@@ -82,7 +86,7 @@ module.exports.getHouseholdResults = ({params: {id}}, res, err) => {
 		// console.log(resourceEligible, "res elig")
 
 		let grossEligible = grossTest(householdSize, incomeSum)
-		// console.log(grossEligible, "gross eligible")
+		console.log(grossEligible, "gross eligible")
 
 		let minusEID = earnedICDed(incomeSum)
 		console.log(minusEID, "income minus eid")
@@ -113,8 +117,11 @@ module.exports.getHouseholdResults = ({params: {id}}, res, err) => {
 		let benefitAmount = getFinalBenefit(householdSize, oneThird)
 		console.log(benefitAmount, "benefit amount")
 
-		// console.log(data)
+		data[0].benefitAmount = benefitAmount;
+		data[0].netEligible = netEligible;
+		data[0].grossEligible = grossEligible;
+		console.log(data[0], "data")
 		res.json(data)
-	})
+		})
 	.catch(err)
 }

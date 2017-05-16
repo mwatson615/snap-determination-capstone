@@ -4,7 +4,7 @@ app.controller('ResultsCtrl', function($scope, $cookies, personFactory, househol
 	let householdId = $cookies.get('householdId')
 	console.log(householdId)
 
-	householdFactory.getHouseholdById(householdId)
+	householdFactory.getResults(householdId)
 	.then((data) => {
 		$scope.householdArray = data.data
 		$scope.householdSize = data.data[0].peopleArray.length
@@ -17,10 +17,10 @@ app.controller('ResultsCtrl', function($scope, $cookies, personFactory, househol
 		}
 		console.log($scope.householdSize)
 	})
-	// personFactory.getPersonByHousehold(householdId)
-	// .then((data) => {
-	// 	console.log(data)
-	// 	$scope.monthlyIncome = data.monthlyIncome
-	// })
+
+	// $scope.testAgain = () => {
+	// 	$cookies.remove('householdId')
+	// 	$location.url('/')
+	// }
 
 })

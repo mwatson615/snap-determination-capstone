@@ -27,6 +27,18 @@ app.factory('householdFactory', ($http) => {
 			})
 		},
 		getHouseholdById : (householdId) => {
+			return $http.get(`http://localhost:3000/api/v1/household/${householdId}`)
+			.then((data) => {
+				console.log(data)
+				return data
+			})
+			.catch((err) => {
+				let errorCode = err.code;
+				let errorMessage = err.message;
+				alert(errorCode + " : " + errorMessage)
+			})
+		},
+		getResults : (householdId) => {
 			return $http.get(`http://localhost:3000/api/v1/household/results/${householdId}`)
 			.then((data) => {
 				console.log(data)
