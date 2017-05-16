@@ -12,6 +12,6 @@ app.controller('HomeCtrl', function($scope, $location, householdFactory, $cookie
 			var test = $cookies.get('householdId')
 			console.log(test)
 		})
-		// $location.url('/demo')
+		$location.url('/demo')
 	}
 })

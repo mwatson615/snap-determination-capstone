@@ -1,4 +1,4 @@
-app.controller('ResultsCtrl', function($scope, $cookies, personFactory, householdFactory) {
+app.controller('ResultsCtrl', function($scope, $cookies, $location, householdFactory) {
 
 	let householdId = $cookies.get('householdId')
 	console.log(householdId)

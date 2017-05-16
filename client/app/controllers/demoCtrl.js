@@ -8,6 +8,12 @@ app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $c
 	console.log($scope.householdId)
 
 
+	$scope.hh = 1;
+	$scope.addField = () => {
+		$scope.hh++;
+		console.log($scope.hh)
+	}
+
 //  MOVE TO APP FOR RESOLVE -- TODO
 	$scope.getPersonByHH = (householdId) => {
 		personFactory.getPersonByHousehold(householdId)
@@ -36,10 +42,11 @@ app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $c
 			"hasResource": $scope.hasResource,
 			"hasEmployer": $scope.hasEmployer
 		}
-		personFactory.createPerson(newPerson)
-		.then((results) => {
-			console.log(results)
-			$scope.getPersonByHH(results._id)
-			})
+		console.log(newPerson)
+		// personFactory.createPerson(newPerson)
+		// .then((results) => {
+		// 	console.log(results)
+		// 	$scope.getPersonByHH(results._id)
+		// 	})
 	}
 })
