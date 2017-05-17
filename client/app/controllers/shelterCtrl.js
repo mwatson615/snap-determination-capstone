@@ -4,9 +4,6 @@ app.controller('ShelterCtrl', function($scope, $cookies, householdFactory, $loca
 	});
 
 	$scope.householdId = $cookies.get('householdId')
-	// $scope.shelterType = '';
-	// $scope.shelterCost = '';
-	// $scope.shelterFrequency = '';
 	$scope.paysSUA = false;
 	console.log($scope.householdId)
 
@@ -21,8 +18,7 @@ app.controller('ShelterCtrl', function($scope, $cookies, householdFactory, $loca
 		console.log(shelter)
 		householdFactory.addShelter(shelter)
 		.then((data) => {
-			console.log(data, "shelter ctrl")
-			// $location.url('/results')
+			$location.url('/results')
 		})
 	}
 })

@@ -35,10 +35,17 @@ module.exports.calcNet = (minusEID, std) => {
 
 module.exports.shelterDed = (adjIncome, shelter, sua) => {
 	let shelterSum = shelter + sua;
-		if (shelterSum > 517) {
-			shelterSum = 517;
-		}
+	console.log(shelterSum, "shelterSum")
+		console.log(adjIncome, "adjIncome")
+	// let halfIC = adjIncome / 2;
+	// console.log(halfIC, "half ic")
 	let shelterDed = shelterSum - (adjIncome / 2)
+		if (shelterDed > 517) {
+			shelterDed = 517;
+		} else if (shelterDed < 0) {
+			shelterDed = 0;
+		}
+	console.log(shelterDed, "calc shelter ded")
 	return shelterDed;
 }
 

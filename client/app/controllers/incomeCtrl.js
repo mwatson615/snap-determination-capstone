@@ -27,29 +27,34 @@ app.controller('IncomeCtrl', function($scope, $cookies, personFactory) {
 	})
 
 	$scope.householdId = $cookies.get('householdId')
-	$scope.payArray = [];
+	$scope.allPayArray = [];
 	let divider = 8,
 	multiplier = 4.3,
-	monthlyIncome = '';
+	monthlyIncome = [];
+
+	$scope.totalIncome = []
 
 	$scope.getSum = () => {
-		$scope.totalIncome = $scope.payArray.reduce(function(acc, val) {
-		return acc + val;
-		}, 0);
+		for (let i = 0; i < $scope.personArray.length; i++) {
+			$scope.totalIncome[i] = $scope.personArray[i].payArray.reduce(function(acc, val) {
+			return acc + val;
+			}, 0);
+		}
 	}
-
 	$scope.calculateMonthly = () => {
-		if ($scope.payFrequency === 'biweekly') {
+		for (let i = 0; i < $scope.personArray.length; i++) {
+		if ($scope.personArray[i].payFrequency === 'biweekly') {
 			divider = 4;
 			multiplier = 2.15;
-		} else if ($scope.payFrequency === 'twiceMonthly') {
+		} else if ($scope.personArray[i].payFrequency === 'twiceMonthly') {
 			divider = 4;
 			multiplier = 2;
-		} else if ($scope.payFrequency === 'monthly') {
+		} else if ($scope.personArray[i].payFrequency === 'monthly') {
 			divider = 2;
 			multiplier = 1;
 		}
-	monthlyIncome = ($scope.totalIncome / divider) * multiplier
+		monthlyIncome[i] = ($scope.totalIncome[i] / divider) * multiplier
+		}
 	}
 
 	$scope.getIncome = () => {
@@ -59,16 +64,16 @@ app.controller('IncomeCtrl', function($scope, $cookies, personFactory) {
 		$scope.calculateMonthly()
 		let employment = {
 			"personId": personId,
-			"employer": $scope.employer,
-			"payFrequency": $scope.payFrequency,
-			"payStubs": $scope.payArray,
-			"monthlyIncome": monthlyIncome
+			"employer": $scope.personArray[i].employer,
+			"payFrequency": $scope.personArray[i].payFrequency,
+			"payStubs": $scope.personArray[i].payArray,
+			"monthlyIncome": monthlyIncome[i]
 		}
 		console.log(employment)
-		// personFactory.addIncome(employment)
-		// .then((data) => {
-		// 	console.log(data, "ctrl income data")
-		// })
+		personFactory.addIncome(employment)
+		.then((data) => {
+			console.log(data, "ctrl income data")
+		})
 	}
 	}
 })
