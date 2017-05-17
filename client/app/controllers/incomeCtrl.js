@@ -5,15 +5,19 @@ app.controller('IncomeCtrl', function($scope, $cookies, personFactory) {
 
 	let householdId = $cookies.get('householdId')
 	console.log(householdId)
-	$scope.people = [];
+	$scope.personArray = [];
 	$scope.personId = [];
 
 	personFactory.getPersonByHousehold(householdId)
 	.then((data) => {
 		for (i = 0; i < data.length; i++) {
-			$scope.people.push(data[i]);
+			if (data[i].hasEmployer === true) {
+			$scope.hhInc = data.length - 1;
+			$scope.personArray.push(data[i]);
 			$scope.personId.push(data[i]._id);
-		console.log($scope.personId[i])
+		// console.log($scope.personId[i])
+		}
+		console.log($scope.personArray)
 		}
 	})
 	.then(() => {
@@ -60,11 +64,11 @@ app.controller('IncomeCtrl', function($scope, $cookies, personFactory) {
 			"payStubs": $scope.payArray,
 			"monthlyIncome": monthlyIncome
 		}
-		// console.log(employment)
-		personFactory.addIncome(employment)
-		.then((data) => {
-			console.log(data, "ctrl income data")
-		})
+		console.log(employment)
+		// personFactory.addIncome(employment)
+		// .then((data) => {
+		// 	console.log(data, "ctrl income data")
+		// })
 	}
 	}
 })
