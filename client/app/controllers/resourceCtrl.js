@@ -1,7 +1,4 @@
 app.controller('ResourceCtrl', function($scope, $cookies, personFactory) {
-	// $(document).ready(function() {
-	// 	$('select').material_select();
-	// });
 
 	let householdId = $cookies.get('householdId')
 	console.log(householdId)
@@ -11,38 +8,27 @@ app.controller('ResourceCtrl', function($scope, $cookies, personFactory) {
 	personFactory.getPersonByHousehold(householdId)
 	.then((data) => {
 // //TODO : ONLY ONE LINE PER ADULT, REWORK PARTIAL TO JUST ASK TOTAL PER ADULT
-		console.log(data)
 		for (i = 0; i < data.length; i++) {
+			if (data[i].hasResource === true)
 			$scope.personArray.push(data[i]);
+			$scope.hhRes = data.length -1
 			personIdArray[i] = data[i]._id;
-		console.log($scope.personArray)
+			$scope.personArray[i].balance = '';
 		}
 	})
-	// .then(() => {
-	// 	$(document).ready(function() {
-	// 		$('select').material_select();
-	// 	});
-	// })
 
-	// let resourceType = [],
 	let resourceBalance = [];
 
-	// $scope.resType = '';
-	// $scope.resBalance = '';
-	$scope.saveResources = (balance) => {
+	$scope.saveResources = () => {
 		for (i = 0; i < $scope.personArray.length; i++) {
-	// // 	resourceType.push($scope.resType[i])
-		resourceBalance.push($scope.balance)
 		let resources = {
 			"personId": personIdArray[i],
-			// "resourceType" : $scope.resTyp,
-			"resourceBalance": resourceBalance[i]
+			"resourceBalance": $scope.personArray[i].balance
 		}
 		personFactory.addResource(resources)
 		.then((data) => {
-			console.log(data)
+
 		})
-		console.log(resources)
 	}
 	}
 })

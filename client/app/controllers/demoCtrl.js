@@ -1,22 +1,8 @@
 app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $cookies) {
 
 	$scope.householdId = $cookies.get('householdId')
-	// $scope.firstName = [];
-	// $scope.hasResource = [];
-	// $scope.hasEmployer = [];
-	// $scope.age = [];
 
-$scope.people = [{}]
-
-	// for (let i = 0; i < 8; i++) {
-	// $scope.hasResource = false;
-	$scope.people.hasEmployer = false;
-	// $scope.firstName = '';
-	// $scope.age[i = '';
-	let personArray = []
-	// console.log($scope.)
-	// }
-	let myArray = [];
+	$scope.people = [{}]
 
 	$scope.getPeople = () => {
 		$scope.people = [
@@ -70,8 +56,6 @@ $scope.people = [{}]
 			}
 		]
 	}
-// }
-
 
 	$scope.hh = 1;
 	$scope.addField = () => {
@@ -117,7 +101,7 @@ $scope.people = [{}]
 		personFactory.createPerson(newPerson[i])
 		.then((results) => {
 			console.log(results)
-			// $scope.getPersonByHH(results._id)
+			$scope.getPersonByHH(results._id)
 			})
 		}
 	}
