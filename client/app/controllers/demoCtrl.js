@@ -64,25 +64,26 @@ app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $c
 
 //  GETS INFO ENTERED TO ROUTE TO EITHER RESOURCE, INCOME,
 //  SHELTER DEPENDING ON INPUT VALUES
-	$scope.getPersonByHH = () => {
-		personFactory.getPersonByHousehold(householdId)
-				.then((data) => {
-					let results = data.data;
-					console.log(results, "person data")
-					for (i = 0; i < results.length; i++) {
-						if (results[i].age > 17 && results[i].hasResource === true) {
-							console.log('adult resources')
-							$location.url('/resources')
-						} else if (results[i].age > 17 && results[i].hasEmployer === true) {
-							console.log('adult income')
-							$location.url('/income')
-						} else {
-							console.log('no adult resources or income')
-							$location.url('/shelter')
-						}
-					}
-				})
-	}
+	// $scope.getPersonByHH = (houseId) => {
+	// 				console.log(houseId)
+	// 	personFactory.getPersonByHousehold(houseId)
+	// 			.then((data) => {
+	// 				let results = data.data;
+	// 				console.log(results, "person data")
+	// 				for (i = 0; i < results.length; i++) {
+	// 					if (results[i].age > 17 && results[i].hasResource === true) {
+	// 						console.log('adult resources')
+	// 						// return $location.url('/resources')
+	// 					} else if (results[i].age > 17 && results[i].hasEmployer === true) {
+	// 						console.log('adult income')
+	// 						// return $location.url('/income')
+	// 					} else {
+	// 						console.log('no adult resources or income')
+	// 						// return $location.url('/shelter')
+	// 					}
+	// 				}
+	// 			})
+	// }
 
 	let newPerson = [];
 	let resultsArray = [];
@@ -103,11 +104,28 @@ app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $c
 		}
 		console.log(newPerson[i])
 		personFactory.createPerson(newPerson[i])
-		.then((results) => {
+		.then((data) => {
+			let results = data.data
 			console.log(results, "new person results")
+			// personFactory.getPersonByHousehold(results._id)
+			// 	.then((data) => {
+			// 		let results = data.data;
+			// 		console.log(results, "person data")
+			// 		for (i = 0; i < results.length; i++) {
+			// 			if (results[i].age > 17 && results[i].hasResource === true) {
+			// 				console.log('adult resources')
+			// 				return $location.url('/resources')
+			// 			} else if (results[i].age > 17 && results[i].hasEmployer === true) {
+			// 				console.log('adult income')
+			// 				return $location.url('/income')
+			// 			} else {
+			// 				console.log('no adult resources or income')
+			// 				$location.url('/shelter')
+			// 			}
+			// 		}
+			// 	})
 			})
-	}
 		$location.url('/resources')
-		// $scope.getPersonByHH()
+		}
 	}
 })

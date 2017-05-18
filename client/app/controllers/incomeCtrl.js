@@ -1,7 +1,4 @@
 app.controller('IncomeCtrl', function($scope, $cookies, personFactory, $location) {
-	// $(document).ready(function() {
-	// 	$('select').material_select();
-	// });
 
 	let householdId = $cookies.get('householdId')
 	console.log(householdId)
@@ -11,25 +8,18 @@ app.controller('IncomeCtrl', function($scope, $cookies, personFactory, $location
 	.then((data) => {
 		$scope.hhInc = 0;
 		$scope.personArray = [];
-		// let newArray = []
 		$scope.personId = [];
 		let results = data.data;
 		for (i = 0; i < results.length; i++) {
-			
 			if (results[i].hasEmployer === true &&
 				results[i].age > 17) {
 				$scope.personArray.push(results[i]);
-				// $scope.hhInc = $scope.personArray.length;
 				$scope.personId.push(results[i]._id);
-			// console.log($scope.personId[i])
-			} else {
+			}
+			if ($scope.personArray.length === 0){
 				return $location.url('/shelter')
 			}
 		}
-		// console.log(newArray)
-		console.log($scope.hhInc)
-		console.log($scope.personArray.length)
-		console.log($scope.personId)
 	})
 	.then(() => {
 		$(document).ready(function() {

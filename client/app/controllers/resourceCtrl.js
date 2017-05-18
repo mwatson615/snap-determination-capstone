@@ -2,7 +2,6 @@ app.controller('ResourceCtrl', function($scope, $cookies, personFactory, $locati
 
 	let householdId = $cookies.get('householdId')
 	console.log(householdId)
-	personIdArray = [];
 	let emplArray = []
 
 	personFactory.getPersonByHousehold(householdId)
@@ -10,18 +9,19 @@ app.controller('ResourceCtrl', function($scope, $cookies, personFactory, $locati
 		$scope.personArray = [];
 		$scope.personId = [];
 		let results = data.data
+		console.log(results)
 		for (i = 0; i < results.length; i++) {
 			emplArray.push(results[i])
 
-			if (results[i].hasResource === true && results[i].age > 17) {
+			if (results[i].age > 17 && results[i].hasResource === true) {
 			$scope.personArray.push(results[i]);
-			// $scope.hhRes = $scope.personArray.length - 2;
 			$scope.personId.push(results[i]._id);
-			} else {
+			console.log($scope.personArray)
+			}
+			if ($scope.personArray.length === 0) {
 				return $location.url('/income')
 			}
 		}
-		// console.log($scope.hhRes)
 		console.log($scope.personArray)
 		console.log(emplArray)
 	})
@@ -40,10 +40,10 @@ app.controller('ResourceCtrl', function($scope, $cookies, personFactory, $locati
 			})
 		}
 		for (let i = 0; i < emplArray.length; i++) {
-			if (emplArray[i].hasEmployer === true) {
-				$location.url('/income')
+			if (emplArray[i].hasEmployer === true && emplArray[i].age > 17) {
+				return $location.url('/income')
 			} else {
-				$location.url('/shelter')
+				return $location.url('/shelter')
 			}
 		}
 	}

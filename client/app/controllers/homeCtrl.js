@@ -7,11 +7,13 @@ app.controller('HomeCtrl', function($scope, $location, householdFactory, $cookie
 		}
 		householdFactory.createHousehold(newHousehold)
 		.then((results) => {
-			$scope.householdId = results.data._id
-			$cookies.put('householdId', $scope.householdId);
-			var test = $cookies.get('householdId')
-			console.log(test)
+			let id = results.data._id
+			$cookies.put('householdId', id);
+			let householdId = $cookies.get('householdId')
+			console.log(id)
 		})
-		$location.url('/demo')
+		.then(() => {
+			$location.url('/demo')
+		})
 	}
 })
