@@ -24,19 +24,14 @@
 	    </select>
 	    <label>How Often?</label>
 	  </div>
-		  <div id="sua" class="row">
+		  <div id="sua" class="row" ng-model="paysSUA">
 		  	<div class="input-field col s8 offset-s3">
-		   <p>
-		      <input name="group1" ng-model="paysSUA" type="radio" ng-value="yesRadio" id="yesSUA" />
-		      <label for="yesSUA">Yes</label>
-		    </p>
-		    <p>
-		      <input name="group1" ng-model="paysSUA" type="radio" ng-value="noRadio" id="noSUA" />
-		      <label for="noSUA">No</label>
-		    </p>
-		  <label for="sua">Do You Pay A Major Heating or Cooling Bill?</label>
-		  </div>
-	  </div>
+			   <p class="push-s6">
+			      <input type="checkbox" ng-model="paysSUA" id="paysSUA" />
+		  		<label for="paysSUA">Do You Pay A Major Heating or Cooling Bill?</label>
+			    </p>
+		  	</div>
+	  	</div>
     </form>
     <div class="center">
     <a class="waves-effect waves-light btn center" ng-click="getShelter()">Calculate</a>

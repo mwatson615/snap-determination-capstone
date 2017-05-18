@@ -1,4 +1,4 @@
-const app = angular.module('Snap', ['ngRoute'])
+const app = angular.module('Snap', ['ngRoute', 'ngCookies'])
 
 app.config(function($routeProvider, $locationProvider) {
 	$locationProvider.hashPrefix('')

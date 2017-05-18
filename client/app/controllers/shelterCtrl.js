@@ -1,21 +1,24 @@
-app.controller('ShelterCtrl', function($scope) {
+app.controller('ShelterCtrl', function($scope, $cookies, householdFactory, $location) {
 	$(document).ready(function() {
 		$('select').material_select();
 	});
-	$scope.shelterType = '';
-	$scope.shelterCost = '';
-	$scope.shelterFrequency = '';
-	$scope.paysSUA = 'no';
-	$scope.noRadio = 'no';
-	$scope.yesRadio = 'yes';
+
+	$scope.householdId = $cookies.get('householdId')
+	$scope.paysSUA = false;
+	console.log($scope.householdId)
 
 	$scope.getShelter = () => {
 		let shelter = {
-			"shelterType": $scope.shelterType,
-			"shelterCost": $scope.shelterCost,
-			"shelterFrequency": $scope.shelterFrequency,
-			"paysSUA": $scope.paysSUA
+			"householdId": $scope.householdId,
+			"shelterType": $scope.shelterType || '',
+			"shelterCost": $scope.shelterCost || 0,
+			"shelterPayFrequency": $scope.shelterFrequency || 'monthly',
+			"paysSUA": $scope.paysSUA || false
 		}
 		console.log(shelter)
+		householdFactory.addShelter(shelter)
+		.then((data) => {
+			$location.url('/results')
+		})
 	}
 })

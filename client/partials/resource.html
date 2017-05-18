@@ -1,24 +1,17 @@
-<h1>Resource</h1>
-
+<h2>Resources</h2>
+<h4>How Much Money Do You Have in Your Accounts?</h4>
  <!-- select options for resource type -->
- <form class="col s12">
-      <div class="row singlePersonResource">
-      <h5>Name</h5>
-    	<div class="input-field col s4">
-		    <select ng-model="resType">
-		      <option value="checking">Checking</option>
-		      <option value="savings">Savings</option>
-		      <option value="stocks">Stocks</option>
-		    </select>
-		    <label>Type of Resource</label>
-		</div>
-		 <div class="input-field col s4">
-          <input id="balance" ng-model="resBalance" type="number" class="validate">
-          <label for="balance">Amount</label>
+ <form class="col s12" ng-repeat="person in personArray">
+ 	<div class="resources row">
+	      <div class="singlePersonResource">
+	      <h5 class="col s4">{{person.firstName}} : </h5>
+    	   </div>
+		    <div class="input-field col s4">
+          <input id="balance1" ng-model="person.balance" type="number" class="validate">
+          <label for="balance1">Amount</label>
         </div>
-        <a class="btn-floating btn-medium waves-effect waves-light green" ng-click="addResource()"><i class="material-icons">add</i></a>
-      </div>
+  </div>
  </form>
  <div class="center">
-<a class="waves-effect waves-light btn" ng-click="getResources()">Proceed</a>
+<a class="waves-effect waves-light btn" ng-click="saveResources()">Continue</a>
 </div>
