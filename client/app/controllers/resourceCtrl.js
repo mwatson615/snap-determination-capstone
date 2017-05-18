@@ -15,11 +15,13 @@ app.controller('ResourceCtrl', function($scope, $cookies, personFactory, $locati
 
 			if (results[i].hasResource === true && results[i].age > 17) {
 			$scope.personArray.push(results[i]);
-			$scope.hhRes = $scope.personArray.length;
+			// $scope.hhRes = $scope.personArray.length - 2;
 			$scope.personId.push(results[i]._id);
+			} else {
+				return $location.url('/income')
 			}
 		}
-		console.log($scope.hhRes)
+		// console.log($scope.hhRes)
 		console.log($scope.personArray)
 		console.log(emplArray)
 	})

@@ -122,7 +122,7 @@ module.exports.getHouseholdResults = ({params: {id}}, res, err) => {
 		dataObj.householdSize = householdSize;
 		dataObj.resourceEligible = resourceEligible;
 		dataObj.resourceSum = resourceSum;
-		dataObj.incomeSum = incomeSum;
+		dataObj.incomeSum = Math.round(incomeSum);
 		dataObj.grossEligible = grossEligible;
 		dataObj.netEligible = netEligible;
 		dataObj.monthlyShelter = monthlyShelter

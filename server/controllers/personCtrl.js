@@ -20,7 +20,7 @@ module.exports.addPerson = ({body}, res, err) => {
 		.findOneAndUpdate(
 			{_id: data.householdId},
 			{$push: {peopleArray: data._id}},
-			{upsert: true})
+			{new: true})
 		.then((data) => {
 			console.log("then", data)
 			res.json(data)

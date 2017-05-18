@@ -1,7 +1,7 @@
 app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $cookies) {
 
-	$scope.householdId = $cookies.get('householdId')
-	console.log($scope.householdId)
+	let householdId = $cookies.get('householdId')
+	console.log(householdId)
 	$scope.people = [{}]
 
 	$scope.getPeople = () => {
@@ -64,7 +64,7 @@ app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $c
 
 //  GETS INFO ENTERED TO ROUTE TO EITHER RESOURCE, INCOME,
 //  SHELTER DEPENDING ON INPUT VALUES
-	$scope.getPersonByHH = (householdId) => {
+	$scope.getPersonByHH = () => {
 		personFactory.getPersonByHousehold(householdId)
 				.then((data) => {
 					let results = data.data;
@@ -88,22 +88,26 @@ app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $c
 	let resultsArray = [];
 
 	$scope.getDemo = () => {
+		console.log(householdId)
 		$scope.getPeople()
 		let size = $scope.hh - 1;
 		let max = 7;
 		$scope.people.splice($scope.hh, max - size)
 		for (let i = 0; i < $scope.hh; i++) {
 				newPerson[i] = {
-					"householdId": $scope.householdId,
+					"householdId": householdId,
 					"firstName": $scope.people[i].firstName,
 					"age": $scope.people[i].age,
 					"hasResource": $scope.people[i].hasResource,
 					"hasEmployer": $scope.people[i].hasEmployer
 		}
+		console.log(newPerson[i])
 		personFactory.createPerson(newPerson[i])
 		.then((results) => {
+			console.log(results, "new person results")
 			})
-		}
-		$scope.getPersonByHH($scope.householdId)
+	}
+		$location.url('/resources')
+		// $scope.getPersonByHH()
 	}
 })

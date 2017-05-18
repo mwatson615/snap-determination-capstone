@@ -1,8 +1,8 @@
 <h2>Resources</h2>
 <h4>How Much Money Do You Have in Your Accounts?</h4>
  <!-- select options for resource type -->
- <form class="col s12" ng-repeat="person in personArray track by $index">
- 	<div class="resources row" ng-show="hhRes > 0">
+ <form class="col s12" ng-repeat="person in personArray">
+ 	<div class="resources row">
 	      <div class="singlePersonResource">
 	      <h5 class="col s4">{{person.firstName}} : </h5>
     	   </div>
@@ -11,81 +11,7 @@
           <label for="balance1">Amount</label>
         </div>
   </div>
-  <div class="resources row" ng-show="hhRes > 1">
-	      <div class="singlePersonResource">
-	      <h5 class="col s4">{{person.firstName}} : </h5>
-    	</div>
-		 <div class="input-field col s4">
-          <input id="balance2" ng-model="person.balance" type="number" class="validate">
-          <label for="balance2">Amount</label>
-        </div>
-  </div>
-  <div class="resources row" ng-show="hhRes > 2">
-	      <div class="singlePersonResource">
-	      <h5 class="col s4">{{person.firstName}} : </h5>
-    	</div>
-		  <div class="input-field col s4">
-          <input id="balance3" ng-model="person.balance" type="number" class="validate">
-          <label for="balance3">Amount</label>
-        </div>
-  </div>
-  <div class="resources row" ng-show="hhRes > 3">
-	      <div class="singlePersonResource">
-	      <h5 class="col s7">{{person.firstName}} : </h5>
-    	</div>
-		 <div class="input-field col s4">
-          <input id="balance4" ng-model="person.balance" type="number" class="validate">
-          <label for="balance4">Amount</label>
-        </div>
-  </div>
-  <div class="resources row" ng-show="hhRes > 4">
-		      <div class="singlePersonResource">
-		      <h5 class="col s7">{{person[0].firstName}} : </h5>
-	    	</div>
-			 <div class="input-field col s4">
-	          <input id="balance5" ng-model="person.balance" type="number" class="validate">
-	          <label for="balance5">Amount</label>
-	        </div>
-  </div>
-  <div class="resources row" ng-show="hhRes > 5">
-	      <div class="singlePersonResource">
-	      <h5 class="col s7">{{person.firstName}} : </h5>
-    	</div>
-		  <div class="input-field col s4">
-          <input id="balance6" ng-model="person.balance" type="number" class="validate">
-          <label for="balance6">Amount</label>
-        </div>
-  </div>
-  <div class="resources row" ng-show="hhRes > 6">
-	      <div class="singlePersonResource">
-	      <h5 class="col s7">{{person.firstName}} : </h5>
-    	</div>
-		  <div class="input-field col s4">
-          <input id="balance7" ng-model="person.balance" type="number" class="validate">
-          <label for="balance7">Amount</label>
-        </div>
-  </div>
-  <div class="resources row" ng-show="hhRes > 7">
-	      <div class="singlePersonResource">
-	      <h5 class="col s7">{{person.firstName}} : </h5>
-    	</div>
-		  <div class="input-field col s4">
-          <input id="balance8" ng-model="person.balance" type="number" class="validate">
-          <label for="balance8">Amount</label>
-        </div>
-</div>
  </form>
  <div class="center">
 <a class="waves-effect waves-light btn" ng-click="saveResources()">Continue</a>
 </div>
-
-<!-- <div class="input-field col s4">
-		    <select id="resType" ng-model="resType">
-		      <option value="checking">Checking</option>
-		      <option value="savings">Savings</option>
-		      <option value="stocks">Stocks</option>
-		    </select>
-		    <label for="resType">Type of Resource</label>
-		</div> -->
-
-		  <!-- <a class="btn-floating btn-medium waves-effect waves-light green" ng-click="addResource()"><i class="material-icons">add</i></a> -->

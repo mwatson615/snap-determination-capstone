@@ -5,13 +5,13 @@ app.controller('IncomeCtrl', function($scope, $cookies, personFactory, $location
 
 	let householdId = $cookies.get('householdId')
 	console.log(householdId)
-	
+
 
 	personFactory.getPersonByHousehold(householdId)
 	.then((data) => {
 		$scope.hhInc = 0;
 		$scope.personArray = [];
-		let newArray = []
+		// let newArray = []
 		$scope.personId = [];
 		let results = data.data;
 		for (i = 0; i < results.length; i++) {
@@ -19,12 +19,14 @@ app.controller('IncomeCtrl', function($scope, $cookies, personFactory, $location
 			if (results[i].hasEmployer === true &&
 				results[i].age > 17) {
 				$scope.personArray.push(results[i]);
-				$scope.hhInc = $scope.personArray.length - 1;
+				// $scope.hhInc = $scope.personArray.length;
 				$scope.personId.push(results[i]._id);
 			// console.log($scope.personId[i])
+			} else {
+				return $location.url('/shelter')
 			}
 		}
-		console.log(newArray)
+		// console.log(newArray)
 		console.log($scope.hhInc)
 		console.log($scope.personArray.length)
 		console.log($scope.personId)
@@ -73,7 +75,7 @@ app.controller('IncomeCtrl', function($scope, $cookies, personFactory, $location
 			"employer": $scope.personArray[i].employer,
 			"payFrequency": $scope.personArray[i].payFrequency,
 			"payStubs": $scope.personArray[i].payArray,
-			"monthlyIncome": monthlyIncome[i]
+			"monthlyIncome": monthlyIncome[i] || 0
 		}
 		console.log(employment)
 		personFactory.addIncome(employment)
