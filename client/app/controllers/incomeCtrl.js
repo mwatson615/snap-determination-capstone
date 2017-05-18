@@ -15,11 +15,13 @@ app.controller('IncomeCtrl', function($scope, $cookies, personFactory, $location
 				results[i].age > 17) {
 				$scope.personArray.push(results[i]);
 				$scope.personId.push(results[i]._id);
-			}
-			if ($scope.personArray.length === 0){
-				return $location.url('/shelter')
+				// console.log($scope.personArray.length)
 			}
 		}
+		if ($scope.personArray.length === 0) {
+				console.log($scope.personArray.length)
+				// $location.url('/shelter')
+			}
 	})
 	.then(() => {
 		$(document).ready(function() {
@@ -27,10 +29,8 @@ app.controller('IncomeCtrl', function($scope, $cookies, personFactory, $location
 		});
 	})
 	$scope.totalIncome = [];
-	// $scope.householdId = $cookies.get('householdId')
-	// $scope.allPayArray = [];
-	let divider = 8,
-	multiplier = 4.3,
+	let divider = '',
+	multiplier = '',
 	monthlyIncome = [];
 
 	$scope.getSum = () => {
@@ -51,6 +51,9 @@ app.controller('IncomeCtrl', function($scope, $cookies, personFactory, $location
 		} else if ($scope.personArray[i].payFrequency === 'monthly') {
 			divider = 2;
 			multiplier = 1;
+		} else {
+			divider = 8;
+			multiplier = 4.3;
 		}
 		monthlyIncome[i] = ($scope.totalIncome[i] / divider) * multiplier
 		}

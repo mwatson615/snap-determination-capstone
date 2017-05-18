@@ -11,16 +11,18 @@ app.controller('ResourceCtrl', function($scope, $cookies, personFactory, $locati
 		let results = data.data
 		console.log(results)
 		for (i = 0; i < results.length; i++) {
+			if (results[i].hasEmployer === true && results[i].age > 17) {
 			emplArray.push(results[i])
+			}
 
 			if (results[i].age > 17 && results[i].hasResource === true) {
 			$scope.personArray.push(results[i]);
 			$scope.personId.push(results[i]._id);
 			console.log($scope.personArray)
 			}
-			if ($scope.personArray.length === 0) {
-				return $location.url('/income')
-			}
+		}
+		if ($scope.personArray.length === 0) {
+			return $location.url('/income')
 		}
 		console.log($scope.personArray)
 		console.log(emplArray)
@@ -40,7 +42,7 @@ app.controller('ResourceCtrl', function($scope, $cookies, personFactory, $locati
 			})
 		}
 		for (let i = 0; i < emplArray.length; i++) {
-			if (emplArray[i].hasEmployer === true && emplArray[i].age > 17) {
+			if (emplArray.length > 0) {
 				return $location.url('/income')
 			} else {
 				return $location.url('/shelter')

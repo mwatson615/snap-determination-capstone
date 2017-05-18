@@ -117,7 +117,11 @@ module.exports.getHouseholdResults = ({params: {id}}, res, err) => {
 		console.log(oneThird, "one third")
 
 		let benefitAmount = getFinalBenefit(householdSize, oneThird)
-		console.log(benefitAmount, "benefit amount")
+		if (grossEligible === false || netEligible === false 
+			|| resourceEligible === false) {
+		benefitAmount = 0;
+		}
+
 
 		dataObj.householdSize = householdSize;
 		dataObj.resourceEligible = resourceEligible;

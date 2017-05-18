@@ -22,6 +22,12 @@ module.exports.getStd = (householdSize) => {
 		case 6:
 			usedStd = standardDed6;
 			break;
+		case 7:
+			usedStd = standardDed6;
+			break;
+		case 8:
+			usedStd = standardDed6;
+			break;
 	}
 	return usedStd;
 }
@@ -57,9 +63,11 @@ module.exports.getSua = (householdSize, paysSUA) => {
 		case 6:
 			usedSua = sua6;
 			break;
-		case (householdSize >= 7):
-			usedSua = sua7
+		case 7:
+			usedSua = sua7;
 			break;
+		case 8:
+			usedSua = sua7;
 	}
 	return usedSua;
 	}
