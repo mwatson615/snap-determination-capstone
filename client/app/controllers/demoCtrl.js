@@ -1,7 +1,7 @@
 app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $cookies) {
 
 	$scope.householdId = $cookies.get('householdId')
-
+	console.log(householdId)
 	$scope.people = [{}]
 
 	$scope.getPeople = () => {
@@ -62,16 +62,18 @@ app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $c
 		$scope.hh++;
 	}
 
-//  MOVE TO APP FOR RESOLVE -- TODO
+//  GETS INFO ENTERED TO ROUTE TO EITHER RESOURCE, INCOME,
+//  SHELTER DEPENDING ON INPUT VALUES
 	$scope.getPersonByHH = (householdId) => {
 		personFactory.getPersonByHousehold(householdId)
 				.then((data) => {
-					console.log(data, "person data")
-					for (i = 0; i < data.length; i++) {
-						if (data[i].age > 17 && data[i].hasResource === true) {
+					let results = data.data;
+					console.log(results, "person data")
+					for (i = 0; i < results.length; i++) {
+						if (results[i].age > 17 && results[i].hasResource === true) {
 							console.log('adult resources')
 							$location.url('/resources')
-						} else if (data[i].age > 17 && data[i].hasEmployer === true) {
+						} else if (results[i].age > 17 && results[i].hasEmployer === true) {
 							console.log('adult income')
 							$location.url('/income')
 						} else {
@@ -83,6 +85,7 @@ app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $c
 	}
 
 	let newPerson = [];
+	let resultsArray = [];
 
 	$scope.getDemo = () => {
 		$scope.getPeople()
@@ -91,18 +94,16 @@ app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $c
 		$scope.people.splice($scope.hh, max - size)
 		for (let i = 0; i < $scope.hh; i++) {
 				newPerson[i] = {
-					"householdId": $scope.householdId,
+					"householdId": householdId,
 					"firstName": $scope.people[i].firstName,
 					"age": $scope.people[i].age,
 					"hasResource": $scope.people[i].hasResource,
 					"hasEmployer": $scope.people[i].hasEmployer
 		}
-		console.log(newPerson[i])
 		personFactory.createPerson(newPerson[i])
 		.then((results) => {
-			console.log(results)
-			$scope.getPersonByHH(results._id)
 			})
 		}
+		$scope.getPersonByHH($scope.householdId)
 	}
 })

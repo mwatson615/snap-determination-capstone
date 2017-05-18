@@ -10,10 +10,10 @@ app.controller('ShelterCtrl', function($scope, $cookies, householdFactory, $loca
 	$scope.getShelter = () => {
 		let shelter = {
 			"householdId": $scope.householdId,
-			"shelterType": $scope.shelterType,
-			"shelterCost": $scope.shelterCost,
-			"shelterPayFrequency": $scope.shelterFrequency,
-			"paysSUA": $scope.paysSUA
+			"shelterType": $scope.shelterType || '',
+			"shelterCost": $scope.shelterCost || 0,
+			"shelterPayFrequency": $scope.shelterFrequency || 'monthly',
+			"paysSUA": $scope.paysSUA || false
 		}
 		console.log(shelter)
 		householdFactory.addShelter(shelter)

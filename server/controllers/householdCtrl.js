@@ -125,6 +125,7 @@ module.exports.getHouseholdResults = ({params: {id}}, res, err) => {
 		dataObj.incomeSum = incomeSum;
 		dataObj.grossEligible = grossEligible;
 		dataObj.netEligible = netEligible;
+		dataObj.monthlyShelter = monthlyShelter
 		dataObj.shelterDeduction = Math.round(shelterDeduction, -4);
 		dataObj.benefitAmount = benefitAmount
 		// console.log(dataObj, "data after stuff")

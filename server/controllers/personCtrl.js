@@ -101,7 +101,7 @@ module.exports.getPersonByHousehold = ({params: {id}}, res, err) => {
 	Person
 	.find({householdId: id})
 	.then((data) => {
-		console.log('person by hh')
+		console.log(data, 'person by hh')
 		res.json(data)
 	})
 	.catch(err)

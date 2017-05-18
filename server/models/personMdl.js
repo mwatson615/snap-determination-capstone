@@ -8,7 +8,6 @@ const personSchema = {
 	"firstName": String,
 	"age": Number,
 	"hasResource": Boolean,
-	"resourceType": [String],
 	"resourceAmount": Number,
 	"hasEmployer": Boolean,
 	"employerName": String,

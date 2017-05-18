@@ -26,7 +26,7 @@ app.controller('ResultsCtrl', function($scope, $cookies, $location, householdFac
 		$scope.totalResources = results.resourceSum;
 		$scope.totalIncome = results.incomeSum;
 		$scope.benefitAmount = results.benefitAmount;
-		$scope.shelterCost = results.shelterCost;
+		$scope.shelterCost = results.monthlyShelter;
 		$scope.shelterDed = results.shelterDeduction;
 		$scope.shelterType = results.shelterType;
 
