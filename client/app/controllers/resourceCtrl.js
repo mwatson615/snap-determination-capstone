@@ -10,20 +10,18 @@ app.controller('ResourceCtrl', function($scope, $cookies, personFactory, $locati
 		$scope.personArray = [];
 		$scope.personId = [];
 		let results = data.data
-		// let midArray = []
 		for (i = 0; i < results.length; i++) {
+			emplArray.push(results[i])
+
 			if (results[i].hasResource === true && results[i].age > 17) {
 			$scope.personArray.push(results[i]);
-			$scope.hhRes = $scope.personArray.length - 2;
+			$scope.hhRes = $scope.personArray.length;
 			$scope.personId.push(results[i]._id);
-			}
-			if (results[i].hasEmployer === true && results[i].age > 17) {
-				emplArray.push(results[i])
 			}
 		}
 		console.log($scope.hhRes)
 		console.log($scope.personArray)
-		
+		console.log(emplArray)
 	})
 
 	$scope.saveResources = () => {
@@ -36,6 +34,7 @@ app.controller('ResourceCtrl', function($scope, $cookies, personFactory, $locati
 		personFactory.addResource(resources)
 			.then((data) => {
 				let results = data.data
+				console.log(data, "after resources")
 			})
 		}
 		for (let i = 0; i < emplArray.length; i++) {

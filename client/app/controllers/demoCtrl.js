@@ -1,7 +1,7 @@
 app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $cookies) {
 
 	$scope.householdId = $cookies.get('householdId')
-	console.log(householdId)
+	console.log($scope.householdId)
 	$scope.people = [{}]
 
 	$scope.getPeople = () => {
@@ -94,7 +94,7 @@ app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $c
 		$scope.people.splice($scope.hh, max - size)
 		for (let i = 0; i < $scope.hh; i++) {
 				newPerson[i] = {
-					"householdId": householdId,
+					"householdId": $scope.householdId,
 					"firstName": $scope.people[i].firstName,
 					"age": $scope.people[i].age,
 					"hasResource": $scope.people[i].hasResource,

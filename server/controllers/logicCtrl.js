@@ -82,27 +82,51 @@ module.exports.getFinalBenefit = (householdSize, netIncome) => {
 	switch(householdSize) {
 		case 1:
 			finalBenefit = max1 - netIncome;
+			if (finalBenefit > max1) {
+				finalBenefit = max1;
+			}
 			break;
 		case 2:
 			finalBenefit = max2 - netIncome;
+			if (finalBenefit > max2) {
+				finalBenefit = max2;
+			}
 			break;
 		case 3:
 			finalBenefit = max3 - netIncome;
+			if (finalBenefit > max3) {
+				finalBenefit = max3;
+			}
 			break;
 		case 4:
 			finalBenefit = max4 - netIncome;
+			if (finalBenefit > max4) {
+				finalBenefit = max4;
+			}
 			break;
 		case 5:
 			finalBenefit = max5 - netIncome;
+			if (finalBenefit > max5) {
+				finalBenefit = max5;
+			}
 			break;
 		case 6:
 			finalBenefit = max6 - netIncome;
+			if (finalBenefit > max6) {
+				finalBenefit = max6;
+			}
 			break;
 		case 7:
 			finalBenefit = max7 - netIncome;
+			if (finalBenefit > max7) {
+				finalBenefit = max7;
+			}
 			break;
 		case 8:
 			finalBenefit = max8 - netIncome;
+			if (finalBenefit > max8) {
+				finalBenefit = max8;
+			}
 			break;
 		}
 		if (finalBenefit < 0) {

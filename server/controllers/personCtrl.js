@@ -15,6 +15,7 @@ module.exports.addPerson = ({body}, res, err) => {
 	Person
 	.create(body)
 	.then((data) => {
+		console.log(data, "created person")
 		Household
 		.findOneAndUpdate(
 			{_id: data.householdId},
@@ -71,7 +72,7 @@ module.exports.addIncome = ({body}, res, err) => {
 		payFrequency: body.payFrequency,
 		payArray: body.payStubs,
 		monthlyIncome: body.monthlyIncome},
-		{upsert: true})
+		{new: true})
 	.then((data) => {
 		console.log(data, "income data")
 		Household
