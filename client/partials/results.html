@@ -1,18 +1,22 @@
-<h1>Results</h1>
+<h1 class="center">Results</h1>
 <div>
-<h3>${{benefitAmount}} per month</h3>
-<div class="finalResult">
+<h3 class="center">${{benefitAmount}} per month</h3>
+<div class="finalResult center">
 	<p>Based on the information provided for a {{householdSize}} person household, you appear {{eligible}} for SNAP benefits.  Remember, this is not an official determination.  The only way to know for sure is to apply with your local Department of Human Services or equivalent.</p>
 </div>
-<div class="finalIncome">
+<div class="finalIncome center">
+	<h5 class="center" ng-show="grossEligible === false">Your household's gross income is over the limit.</h5>
+	<h5 class="center" ng-show="grossEligible === true && netEligible === false">Your household's income is over the net income limit.</h5>
 	<p>How was this result calculated?  SNAP eligibility is based on several factors including household size, income, resources, and expenses.  For this simplified test, your gross income per pay period is calculated to create a gross monthly income, and all monthly gross incomes for the household are added together which in this case equals ${{totalIncome}} per month.</p>
 </div>
-<div class="finalResources">
-	<p>Resources can be complicated, and this test only uses the most common forms of checking or savings accounts and stocks.  Each household member's resources are added together to see if the household has more than $2250 in what is known as "liquid resources".  Your household's resources as entered are ${{totalResources}}.</p>
+<div class="finalResources center">
+	<h5 class="center" ng-show="resourceEligible === false">Your household is over the resource limit.</h5>
+	<p>Resources can be complicated, and this test only uses the most common forms of checking or savings accounts and stocks.  Each household member's resources are added together to see if the household has more than $2250.  Your household's resources as entered are ${{totalResources}}.</p>
 </div>
-<div class="finalShelter">
+<div class="finalShelter center" ng-show="eligible === 'eligible'">
 	<p>This test uses common expenses which are known as shelter costs.  You entered a {{shelterType}} expense of ${{shelterCost}} per month based on the monthly formula (the same one for income).  You also entered that you {{paysSUA}} pay a major heating or cooling cost so you {{paysSUA}} get an excess shelter deduction of ${{shelterDed}}.  That's just a way to give one large deduction each month instead of dealing with fluctuating seasonal costs.</p>
 </div>
+<h5><a href="https://www.fns.usda.gov/snap/eligibility">See the Program Policies</a></h5>
 </div>
 <div class="center">
 		<a class="waves-effect waves-light btn" ng-click="testAgain()">Test Again</a>

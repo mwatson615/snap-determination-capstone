@@ -1,13 +1,10 @@
 app.controller('ResultsCtrl', function($scope, $cookies, $location, householdFactory) {
 
 	let householdId = $cookies.get('householdId')
-	console.log(householdId)
 
 	householdFactory.getResults(householdId)
 	.then((data) => {
-		console.log(data)
 		let results = data.data
-		// $scope.householdArray = data.data
 		if (results.resourceEligible === false) {
 			$scope.resourceEligible = false
 			$scope.eligible = "ineligible"
@@ -21,7 +18,8 @@ app.controller('ResultsCtrl', function($scope, $cookies, $location, householdFac
 			$scope.eligible = "eligible"
 		}
 
-
+		$scope.netEligible = results.netEligible;
+		$scope.grossEligible = results.grossEligible;
 		$scope.householdSize = results.householdSize;
 		$scope.totalResources = results.resourceSum;
 		$scope.totalIncome = results.incomeSum;
