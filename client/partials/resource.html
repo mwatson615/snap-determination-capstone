@@ -1,5 +1,5 @@
-<h2>Resources</h2>
-<h4>How Much Money Do You Have in Your Accounts?</h4>
+<!-- <h2>Resources</h2> -->
+<h5 class="center res-quest">How Much Money Do You Have in Your Accounts?  Shared accounts should only be entered once.</h5>
  <!-- select options for resource type -->
  <form class="col s12" ng-repeat="person in personArray">
  	<div class="resources row">
@@ -12,6 +12,7 @@
         </div>
   </div>
  </form>
- <div class="center">
+ <div class="col s5 center">
+ <a class="waves-effect waves-light red btn" ng-click="restart()">Restart</a>
 <a class="waves-effect waves-light btn" ng-click="saveResources()">Continue</a>
 </div>

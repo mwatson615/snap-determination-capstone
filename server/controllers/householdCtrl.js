@@ -80,41 +80,28 @@ module.exports.getHouseholdResults = ({params: {id}}, res, err) => {
 
 		let householdSize = dataObj.peopleArray.length;
 		let resourceSum = getArraySum(dataObj.totalResources)
-		// console.log(resourceSum, "resource sum")
 		let incomeSum = getArraySum(dataObj.totalCountableIC)
-		console.log(incomeSum, "gross sum")
 
 		let resourceEligible = resourceTest(resourceSum)
-		// console.log(resourceEligible, "res elig")
 
 		let grossEligible = grossTest(householdSize, incomeSum)
-		console.log(grossEligible, "gross eligible")
 
 		let minusEID = earnedICDed(incomeSum)
-		console.log(minusEID, "income minus eid")
 		let monthlyShelter = convertHousing(dataObj.shelterPayFrequency, dataObj.shelterCost)
-		console.log(monthlyShelter, "monthly shelter")
 
 		let sua = getSua(householdSize, dataObj.paysSUA)
-		console.log(sua, "sua")
 
 		let std = getStd(householdSize)
-		console.log(std, "std")
 
 		let adjustedIC = calcNet(minusEID, std)
-		console.log(adjustedIC, "adjusted ic")
 
 		let shelterDeduction = shelterDed(adjustedIC, monthlyShelter, sua)
-		console.log(shelterDeduction, "shelter ded")
 
 		let netIncome = getNet(adjustedIC, shelterDeduction)
-		console.log(netIncome, "net income")
 
 		let netEligible = netTest(householdSize, netIncome)
-		console.log(netEligible, "net eligible")
 
 		let oneThird = oneThirdCalc(netIncome)
-		console.log(oneThird, "one third")
 
 		let benefitAmount = getFinalBenefit(householdSize, oneThird)
 		if (grossEligible === false || netEligible === false 
@@ -132,7 +119,6 @@ module.exports.getHouseholdResults = ({params: {id}}, res, err) => {
 		dataObj.monthlyShelter = monthlyShelter
 		dataObj.shelterDeduction = Math.round(shelterDeduction, -4);
 		dataObj.benefitAmount = benefitAmount
-		// console.log(dataObj, "data after stuff")
 		res.json(dataObj)
 		})
 	.catch(err)

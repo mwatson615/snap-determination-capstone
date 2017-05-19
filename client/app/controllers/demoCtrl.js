@@ -62,34 +62,10 @@ app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $c
 		$scope.hh++;
 	}
 
-//  GETS INFO ENTERED TO ROUTE TO EITHER RESOURCE, INCOME,
-//  SHELTER DEPENDING ON INPUT VALUES
-	// $scope.getPersonByHH = (houseId) => {
-	// 				console.log(houseId)
-	// 	personFactory.getPersonByHousehold(houseId)
-	// 			.then((data) => {
-	// 				let results = data.data;
-	// 				console.log(results, "person data")
-	// 				for (i = 0; i < results.length; i++) {
-	// 					if (results[i].age > 17 && results[i].hasResource === true) {
-	// 						console.log('adult resources')
-	// 						// return $location.url('/resources')
-	// 					} else if (results[i].age > 17 && results[i].hasEmployer === true) {
-	// 						console.log('adult income')
-	// 						// return $location.url('/income')
-	// 					} else {
-	// 						console.log('no adult resources or income')
-	// 						// return $location.url('/shelter')
-	// 					}
-	// 				}
-	// 			})
-	// }
-
 	let newPerson = [];
 	let resultsArray = [];
 
 	$scope.getDemo = () => {
-		console.log(householdId)
 		$scope.getPeople()
 		let size = $scope.hh - 1;
 		let max = 7;
@@ -102,30 +78,16 @@ app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $c
 					"hasResource": $scope.people[i].hasResource,
 					"hasEmployer": $scope.people[i].hasEmployer
 		}
-		console.log(newPerson[i])
 		personFactory.createPerson(newPerson[i])
 		.then((data) => {
 			let results = data.data
-			console.log(results, "new person results")
-			// personFactory.getPersonByHousehold(results._id)
-			// 	.then((data) => {
-			// 		let results = data.data;
-			// 		console.log(results, "person data")
-			// 		for (i = 0; i < results.length; i++) {
-			// 			if (results[i].age > 17 && results[i].hasResource === true) {
-			// 				console.log('adult resources')
-			// 				return $location.url('/resources')
-			// 			} else if (results[i].age > 17 && results[i].hasEmployer === true) {
-			// 				console.log('adult income')
-			// 				return $location.url('/income')
-			// 			} else {
-			// 				console.log('no adult resources or income')
-			// 				$location.url('/shelter')
-			// 			}
-			// 		}
-			// 	})
 			})
 		$location.url('/resources')
 		}
+	}
+
+	$scope.restart = () => {
+		$cookies.remove('householdId')
+		$location.url('/')
 	}
 })

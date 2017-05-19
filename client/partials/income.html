@@ -1,4 +1,5 @@
   <!-- <div class="row"> -->
+  <h5 class="center income-info">Please enter your last 8 weeks' gross income (before tax or deductions)</h5>
 	<!-- employer field -->
     <form class="col s12" ng-repeat="person in personArray">
     	<div class="col s12">
@@ -59,8 +60,9 @@
 	   	</div>
 
 	    </form>
-	    <div class="center">
-	    <a class="waves-effect waves-light btn" ng-click="getIncome()">Proceed</a>
+	    <div class="center col s5">
+	    <a class="waves-effect waves-light red btn" ng-click="restart()">Restart</a>
+	    <a class="waves-effect waves-light btn" ng-click="getIncome()">Continue</a>
 	    </div>
 	 </div>
 </div>

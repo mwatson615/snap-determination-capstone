@@ -1,8 +1,6 @@
 app.controller('IncomeCtrl', function($scope, $cookies, personFactory, $location) {
 
 	let householdId = $cookies.get('householdId')
-	console.log(householdId)
-
 
 	personFactory.getPersonByHousehold(householdId)
 	.then((data) => {
@@ -15,12 +13,11 @@ app.controller('IncomeCtrl', function($scope, $cookies, personFactory, $location
 				results[i].age > 17) {
 				$scope.personArray.push(results[i]);
 				$scope.personId.push(results[i]._id);
-				// console.log($scope.personArray.length)
 			}
 		}
 		if ($scope.personArray.length === 0) {
 				console.log($scope.personArray.length)
-				// $location.url('/shelter')
+				$location.url('/shelter')
 			}
 	})
 	.then(() => {
@@ -70,12 +67,15 @@ app.controller('IncomeCtrl', function($scope, $cookies, personFactory, $location
 			"payStubs": $scope.personArray[i].payArray,
 			"monthlyIncome": monthlyIncome[i] || 0
 		}
-		console.log(employment)
 		personFactory.addIncome(employment)
 		.then((data) => {
-			console.log(data, "ctrl income data")
 		})
 	}
 	$location.url('/shelter')
+	}
+
+	$scope.restart = () => {
+		$cookies.remove('householdId')
+		$location.url('/')
 	}
 })

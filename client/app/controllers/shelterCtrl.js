@@ -5,7 +5,6 @@ app.controller('ShelterCtrl', function($scope, $cookies, householdFactory, $loca
 
 	$scope.householdId = $cookies.get('householdId')
 	$scope.paysSUA = false;
-	console.log($scope.householdId)
 
 	$scope.getShelter = () => {
 		let shelter = {
@@ -15,10 +14,14 @@ app.controller('ShelterCtrl', function($scope, $cookies, householdFactory, $loca
 			"shelterPayFrequency": $scope.shelterFrequency || 'monthly',
 			"paysSUA": $scope.paysSUA || false
 		}
-		console.log(shelter)
 		householdFactory.addShelter(shelter)
 		.then((data) => {
 			$location.url('/results')
 		})
+	}
+
+	$scope.restart = () => {
+		$cookies.remove('householdId')
+		$location.url('/')
 	}
 })
