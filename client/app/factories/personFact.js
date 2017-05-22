@@ -56,6 +56,33 @@ app.factory('personFactory', ($http, $q, $route, $location) => {
 				let errorMessage = err.message;
 				alert(errorCode + " : " + errorMessage)
 			})
+		},
+		getPersonResByHousehold : (householdId) => {
+			return $http.get(`http://localhost:3000/api/v1/person/res/${householdId}`)
+			.then((data) => {
+				return data
+			})
+			.catch((err) => {
+				let errorCode = err.code;
+				let errorMessage = err.message;
+				alert(errorCode + " : " + errorMessage)
+			})
+		},
+		getPersonIncByHousehold : (householdId) => {
+			return $http.get(`http://localhost:3000/api/v1/person/inc/${householdId}`)
+			.then((data) => {
+				return data
+			})
+			.catch((err) => {
+				let errorCode = err.code;
+				let errorMessage = err.message;
+				alert(errorCode + " : " + errorMessage)
+			})
 		}
 	}
 })
+
+
+
+
+//

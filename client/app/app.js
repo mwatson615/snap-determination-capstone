@@ -11,7 +11,13 @@ app.config(function($routeProvider, $locationProvider) {
 		controller: 'DemoCtrl'
 	}).when('/resources', {
 		templateUrl: 'partials/resource.html',
-		controller: 'ResourceCtrl'
+		controller: 'ResourceCtrl',
+		// resolve: {
+		// 	data (personFactory, $location) {
+		// 		return personFactory.getPersonByHousehold()
+		// 		.catch(() => $location.url('/resources'))
+		// 	}
+		// }
 	}).when('/income', {
 		templateUrl: 'partials/income.html',
 		controller: 'IncomeCtrl'
