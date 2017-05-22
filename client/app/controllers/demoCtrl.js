@@ -64,6 +64,7 @@ app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $c
 
 	let newPerson = [];
 	let resultsArray = [];
+	let resArray = [];
 
 	$scope.getDemo = () => {
 		$scope.getPeople()
@@ -80,11 +81,32 @@ app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $c
 		}
 		personFactory.createPerson(newPerson[i])
 		.then((data) => {
-			let results = data.data
-			})
-		$location.url('/resources')
-		}
+		})
+			// let results = data.data
+			// personFactory.getPersonByHousehold(householdId)
+			// 	.then((data) => {
+			// 		let results = data.data
+			// 		console.log(results)
+			// 		for (let i = 0; i < results.length; i++) {
+			// 			if (results[i].hasResource === true && results[i].age > 17) {
+			// 				resArray.push(results[i])
+			// 				// console.log( resArray.length, "has resource")
+			// 			}
+			// 		}
+					
+						// $location.url('/resource')
+					// } else 
+					// if (resArray === 0) {
+					// console.log(resArray.length, "no resource")
+					// // $location.url('/income')
+					// }
+				// })
+				// if (resArray > 0) {
+						// console.log(resArray.length, "has resources")
+					// }
+			$location.url('/resources')
 	}
+}
 
 	$scope.restart = () => {
 		$cookies.remove('householdId')

@@ -1,44 +1,35 @@
 app.controller('ResourceCtrl', function($scope, $cookies, personFactory, $location) {
 
 	let householdId = $cookies.get('householdId')
-	let emplArray = []
+	let personId = [];
 
-	personFactory.getPersonByHousehold(householdId)
+// ROUTE ONLY GETS HH MEMBERS WHO HAVE RESOURCES
+	personFactory.getPersonResByHousehold(householdId)
 	.then((data) => {
-		$scope.personArray = [];
-		$scope.personId = [];
 		let results = data.data
-		for (i = 0; i < results.length; i++) {
-			if (results[i].hasEmployer === true && results[i].age > 17) {
-			emplArray.push(results[i])
-			}
-
-			if (results[i].age > 17 && results[i].hasResource === true) {
-			$scope.personArray.push(results[i]);
-			$scope.personId.push(results[i]._id);
-			}
+		$scope.personArray = [];
+		if (results.length === 0) {
+			$location.url('/income')
 		}
-		if ($scope.personArray.length === 0) {
-			return $location.url('/income')
+		for (let i = 0; i < results.length; i++) {
+			$scope.personArray.push(results[i]);
+			personId.push(results[i]._id);
 		}
 	})
 
+// SAVES RESOURCES TO PERSON AND THEN TO HOUSEHOLD
 	$scope.saveResources = () => {
 		for (let i = 0; i < $scope.personArray.length; i++) {
-		let resources = {
-			"personId": $scope.personId[i],
-			"resourceBalance": $scope.personArray[i].balance || 0
-		}
+			let resources = {
+				"personId": personId[i],
+				"resourceBalance": $scope.personArray[i].balance || 0
+			}
 		personFactory.addResource(resources)
 			.then((data) => {
 				let results = data.data
-			if (emplArray.length > 0) {
-				$location.url('/income')
-			} else {
-				$location.url('/shelter')
-			}
 			})
 		}
+		$location.url('/income')
 	}
 
 	$scope.restart = () => {

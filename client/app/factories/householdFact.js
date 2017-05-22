@@ -5,7 +5,6 @@ app.factory('householdFactory', ($http) => {
 		createHousehold : (newHousehold) => {
 			return $http.post('http://localhost:3000/api/v1/household/new', JSON.stringify(newHousehold))
 			.then((data) => {
-				console.log(data, 'household created')
 				return data
 			})
 			.catch((err) => {
@@ -17,7 +16,6 @@ app.factory('householdFactory', ($http) => {
 		addShelter : (shelter) => {
 			return $http.patch('http://localhost:3000/api/v1/household/addShelter', JSON.stringify(shelter))
 			.then((data) => {
-				console.log(data, "shelter created")
 				return data
 			})
 			.catch((err) => {
@@ -29,7 +27,6 @@ app.factory('householdFactory', ($http) => {
 		getHouseholdById : (householdId) => {
 			return $http.get(`http://localhost:3000/api/v1/household/${householdId}`)
 			.then((data) => {
-				console.log(data)
 				return data
 			})
 			.catch((err) => {

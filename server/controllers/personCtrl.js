@@ -102,7 +102,33 @@ module.exports.getPersonByHousehold = ({params: {id}}, res, err) => {
 	Person
 	.find({householdId: id})
 	.then((data) => {
-		console.log(data, 'person by hh')
+		// for (let i = )
+		// let results = data[0].toObject()
+		console.log(data, 'data p by hh')
+		res.json(data)
+	})
+	.catch(err)
+}
+// GETS ALL HH MEMBERS WHO HAVE RESOURCES
+module.exports.getPersonResByHousehold = ({params: {id}}, res, err) => {
+	Person
+	.find({householdId: id})
+	.where('age').gt(17)
+	.where('hasResource').equals(true)
+	.then((data) => {
+		console.log(data, "person by res")
+		res.json(data)
+	})
+	.catch(err)
+}
+// GETS ALL HH MEMBERS WHO HAVE EMPLOYERS
+module.exports.getPersonIncByHousehold = ({params: {id}}, res, err) => {
+	Person
+	.find({householdId: id})
+	.where('age').gt(17)
+	.where('hasEmployer').equals(true)
+	.then((data) => {
+		console.log(data, "person by res")
 		res.json(data)
 	})
 	.catch(err)

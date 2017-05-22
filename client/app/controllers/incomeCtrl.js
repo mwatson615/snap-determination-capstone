@@ -2,22 +2,19 @@ app.controller('IncomeCtrl', function($scope, $cookies, personFactory, $location
 
 	let householdId = $cookies.get('householdId')
 
-	personFactory.getPersonByHousehold(householdId)
+// ROUTE ONLY GETS HH MEMBERS WHO HAVE EMPLOYERS
+	personFactory.getPersonIncByHousehold(householdId)
 	.then((data) => {
 		$scope.hhInc = 0;
 		$scope.personArray = [];
 		$scope.personId = [];
 		let results = data.data;
-		for (i = 0; i < results.length; i++) {
-			if (results[i].hasEmployer === true &&
-				results[i].age > 17) {
+		if (results.length === 0) {
+			$location.url('/shelter')
+		}
+		for (let i = 0; i < results.length; i++) {
 				$scope.personArray.push(results[i]);
 				$scope.personId.push(results[i]._id);
-			}
-		}
-		if ($scope.personArray.length === 0) {
-				console.log($scope.personArray.length)
-				$location.url('/shelter')
 			}
 	})
 	.then(() => {
@@ -30,6 +27,7 @@ app.controller('IncomeCtrl', function($scope, $cookies, personFactory, $location
 	multiplier = '',
 	monthlyIncome = [];
 
+// EACH PAY VALUE ADDED TO ARRAY, THEN SUM VALUE
 	$scope.getSum = () => {
 		for (let i = 0; i < $scope.personArray.length; i++) {
 			$scope.totalIncome[i] = $scope.personArray[i].payArray.reduce(function(acc, val) {
@@ -37,6 +35,8 @@ app.controller('IncomeCtrl', function($scope, $cookies, personFactory, $location
 			}, 0);
 		}
 	}
+
+//PAY FREQUENCY DETERMINES FORMULA TO FIND MONTHLY INCOME
 	$scope.calculateMonthly = () => {
 		for (let i = 0; i < $scope.personArray.length; i++) {
 		if ($scope.personArray[i].payFrequency === 'biweekly') {
@@ -56,6 +56,7 @@ app.controller('IncomeCtrl', function($scope, $cookies, personFactory, $location
 		}
 	}
 
+//PAY AMOUNTS SAVED TO PERSON AND MONTHLY INC SAVED TO HOUSEHOLD
 	$scope.getIncome = () => {
 		for (let i = 0; i < $scope.personId.length; i++) {
 		$scope.getSum()
