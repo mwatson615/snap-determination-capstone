@@ -1,6 +1,9 @@
 app.controller('IncomeCtrl', function($scope, $cookies, personFactory, $location) {
 
 	let householdId = $cookies.get('householdId')
+	if (householdId === undefined) {
+		$location.url('/')
+	}
 
 // ROUTE ONLY GETS HH MEMBERS WHO HAVE EMPLOYERS
 	personFactory.getPersonIncByHousehold(householdId)

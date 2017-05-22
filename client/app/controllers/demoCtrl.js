@@ -1,7 +1,9 @@
 app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $cookies) {
 
 	let householdId = $cookies.get('householdId')
-	console.log(householdId)
+	if (householdId === undefined) {
+		$location.url('/')
+	}
 	$scope.people = [{}]
 
 	$scope.getPeople = () => {

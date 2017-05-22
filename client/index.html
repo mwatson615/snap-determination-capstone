@@ -10,10 +10,18 @@
 </head>
 <body ng-app="Snap">
 	<div class="container">
-		 <nav class="teal">
+		 <nav class="teal" ng-controller="NavCtrl">
 		    <div class="nav-wrapper">
-		      <a href="/" class="brand-logo left">SNAP</a>
-		      <ul id="nav-mobile" class="right">
+		      <a href="/" class="brand-logo right">SNAP</a>
+		      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+		      <ul class="left hide-on-med-and-down">
+		        <li><a href="#/demo">Basic Info</a></li>
+		        <li><a href="#/resources">Resources</a></li>
+		        <li><a href="#/income">Income</a></li>
+		        <li><a href="#/shelter">Shelter Costs</a></li>
+		        <li><a href="#/results">Results</a></li>
+		      </ul>
+		      <ul id="nav-mobile" class="side-nav">
 		        <li><a href="#/demo">Basic Info</a></li>
 		        <li><a href="#/resources">Resources</a></li>
 		        <li><a href="#/income">Income</a></li>
@@ -36,6 +44,7 @@
 	<script src="app/app.js"></script>
 	<script src="app/factories/householdFact.js"></script>
 	<script src="app/factories/personFact.js"></script>
+	<script src="app/controllers/navCtrl.js"></script>
 	<script src="app/controllers/homeCtrl.js"></script>
 	<script src="app/controllers/demoCtrl.js"></script>
 	<script src="app/controllers/incomeCtrl.js"></script>

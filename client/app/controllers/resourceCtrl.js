@@ -1,6 +1,9 @@
 app.controller('ResourceCtrl', function($scope, $cookies, personFactory, $location) {
 
 	let householdId = $cookies.get('householdId')
+	if (householdId === undefined) {
+		$location.url('/')
+	}
 	let personId = [];
 
 // ROUTE ONLY GETS HH MEMBERS WHO HAVE RESOURCES
