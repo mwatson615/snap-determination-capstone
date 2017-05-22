@@ -13,7 +13,12 @@ app.controller('HomeCtrl', function($scope, $location, householdFactory, $cookie
 			console.log(id)
 		})
 		.then(() => {
+			console.log($scope.zipcode)
+			if ($scope.zipcode === undefined) {
+				alert("Please enter your zip code to continue")
+		} else {
 			$location.url('/demo')
+		}
 		})
 	}
 })

@@ -1,6 +1,9 @@
 app.controller('ResultsCtrl', function($scope, $cookies, $location, householdFactory) {
 
 	let householdId = $cookies.get('householdId')
+	if (householdId === undefined) {
+		$location.url('/')
+	}
 
 	householdFactory.getResults(householdId)
 	.then((data) => {
