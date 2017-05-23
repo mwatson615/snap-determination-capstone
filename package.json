@@ -1,11 +1,15 @@
 {
-  "name": "snap-determination-capstone",
+  "name": "snaptest",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "postinstall": "bower install"
+  },
+  "engines": {
+    "node": "7.4.0"
   },
   "repository": {
     "type": "git",
