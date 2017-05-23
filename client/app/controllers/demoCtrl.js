@@ -67,12 +67,14 @@ app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $c
 	let newPerson = [];
 	let resultsArray = [];
 	let resArray = [];
+	let hasRes = 0;
 
 	$scope.getDemo = () => {
 		$scope.getPeople()
 		let size = $scope.hh - 1;
 		let max = 7;
 		$scope.people.splice($scope.hh, max - size)
+		let counter = 0;
 		for (let i = 0; i < $scope.hh; i++) {
 				newPerson[i] = {
 					"householdId": householdId,
@@ -81,32 +83,17 @@ app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $c
 					"hasResource": $scope.people[i].hasResource,
 					"hasEmployer": $scope.people[i].hasEmployer
 		}
+		if (newPerson[i].age > 17 && newPerson[i].hasResource === true) {
+			counter++;
+		}
 		personFactory.createPerson(newPerson[i])
-		.then((data) => {
-		})
-			// let results = data.data
-			// personFactory.getPersonByHousehold(householdId)
-			// 	.then((data) => {
-			// 		let results = data.data
-			// 		console.log(results)
-			// 		for (let i = 0; i < results.length; i++) {
-			// 			if (results[i].hasResource === true && results[i].age > 17) {
-			// 				resArray.push(results[i])
-			// 				// console.log( resArray.length, "has resource")
-			// 			}
-			// 		}
-					
-						// $location.url('/resource')
-					// } else 
-					// if (resArray === 0) {
-					// console.log(resArray.length, "no resource")
-					// // $location.url('/income')
-					// }
-				// })
-				// if (resArray > 0) {
-						// console.log(resArray.length, "has resources")
-					// }
+			.then((data) => {
+			})
+		if (counter > 0) {
 			$location.url('/resources')
+		} else {
+			$location.url('/income')
+		}
 	}
 }
 

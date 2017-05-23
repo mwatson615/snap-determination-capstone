@@ -62,7 +62,6 @@ module.exports.getHouseholdById = ({params: {id}}, res, err) => {
 }
 
 module.exports.getHouseholdByPerson = ({params: {id}}, res, err) => {
-	console.log('hh by person')
 	Household
 	.find({peopleArray: id})
 	.then((data) => {
@@ -72,7 +71,6 @@ module.exports.getHouseholdByPerson = ({params: {id}}, res, err) => {
 }
 
 module.exports.getHouseholdResults = ({params: {id}}, res, err) => {
-	console.log('hh results')
 	Household
 	.find({_id: id})
 	.then((data) => {
