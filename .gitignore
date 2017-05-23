@@ -30,6 +30,8 @@ build/Release
 node_modules
 jspm_packages
 lib
+bower_components
+.env
 
 # Optional npm cache directory
 .npm
