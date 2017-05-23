@@ -11,10 +11,10 @@
 </div>
 <div class="finalResources center">
 	<h5 class="center" ng-show="resourceEligible === false">Your household is over the resource limit.</h5>
-	<p>Resources can be complicated, and this test only uses the most common forms of checking or savings accounts and stocks.  Each household member's resources are added together to see if the household has more than $2250.  Your household's resources as entered are ${{totalResources}}.</p>
+	<p>Each household member's resources are added together to see if the household has more than $2250.  Your household's resources as entered are ${{totalResources}}.</p>
 </div>
 <div class="finalShelter center" ng-show="eligible === 'eligible'">
-	<p>This test uses common expenses which are known as shelter costs.  You entered a {{shelterType}} expense of ${{shelterCost}} per month based on the monthly formula (the same one for income).  You also entered that you {{paysSUA}} pay a major heating or cooling cost so you {{paysSUA}} get an excess shelter deduction of ${{shelterDed}}.  That's just a way to give one large deduction each month instead of dealing with fluctuating seasonal costs.</p>
+	<p>You entered a {{shelterType}} expense of ${{shelterCost}} per month.  You {{paysSUA}} pay a major heating or cooling cost so you {{paysSUA}} get an excess shelter deduction of ${{shelterDed}}.  That's just a way to give one large deduction each month instead of dealing with fluctuating seasonal utility costs.</p>
 </div>
 <div class="center-align">
 <h5><a href="https://www.fns.usda.gov/snap/eligibility">See the Program Policies</a></h5>

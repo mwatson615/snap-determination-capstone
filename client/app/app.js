@@ -12,12 +12,6 @@ app.config(function($routeProvider, $locationProvider) {
 	}).when('/resources', {
 		templateUrl: 'partials/resource.html',
 		controller: 'ResourceCtrl',
-		// resolve: {
-		// 	data (personFactory, $location) {
-		// 		return personFactory.getPersonByHousehold()
-		// 		.catch(() => $location.url('/resources'))
-		// 	}
-		// }
 	}).when('/income', {
 		templateUrl: 'partials/income.html',
 		controller: 'IncomeCtrl'
@@ -30,5 +24,4 @@ app.config(function($routeProvider, $locationProvider) {
 	}).otherwise({
 		redirectTo: '/'
 	})
-	// $locationProvider.html5Mode(true);
 });

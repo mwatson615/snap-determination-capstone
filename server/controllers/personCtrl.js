@@ -15,14 +15,12 @@ module.exports.addPerson = ({body}, res, err) => {
 	Person
 	.create(body)
 	.then((data) => {
-		console.log(data, "created person")
 		Household
 		.findOneAndUpdate(
 			{_id: data.householdId},
 			{$push: {peopleArray: data._id}},
 			{new: true})
 		.then((data) => {
-			console.log("then", data)
 			res.json(data)
 		})
 		.catch(err)
@@ -41,21 +39,18 @@ module.exports.getAllPersons = (req, res, err) => {
 //  ADDS RESOURCE INFO TO PERSON DOC AND THEN TOTAL 
 //  RESOURCES TO A HOUSEHOLD ARRAY
 module.exports.addResource = ({body}, res, err) => {
-	console.log(body, "first check")
 	Person
 	.findOneAndUpdate(
 		{_id: body.personId},
 		{resourceAmount: body.resourceBalance},
 		{new: true})
 	.then((data) => {
-		// console.log(data, "data")
 		Household
 		.findOneAndUpdate(
 			{_id: data.householdId},
 			{$push: {totalResources: data.resourceAmount}},
 			{new: true})
 		.then((data) => {
-			console.log("then", data)
 			res.json(data)
 		})
 	})
@@ -64,7 +59,6 @@ module.exports.addResource = ({body}, res, err) => {
 
 // ADDS INCOME TO PERSON AND MONTHLY INCOME TO HOUSEHOLD
 module.exports.addIncome = ({body}, res, err) => {
-	// console.log(body, "first check")
 	Person
 	.findOneAndUpdate(
 		{_id: body.personId},
@@ -74,14 +68,12 @@ module.exports.addIncome = ({body}, res, err) => {
 		monthlyIncome: body.monthlyIncome},
 		{new: true})
 	.then((data) => {
-		console.log(data, "income data")
 		Household
 		.findOneAndUpdate(
 			{_id: data.householdId},
 			{$push: {totalCountableIC: data.monthlyIncome}},
 			{upsert: true})
 		.then((data) => {
-			console.log(data, "data from monthly")
 			res.json(data)
 		})
 	})
@@ -102,9 +94,6 @@ module.exports.getPersonByHousehold = ({params: {id}}, res, err) => {
 	Person
 	.find({householdId: id})
 	.then((data) => {
-		// for (let i = )
-		// let results = data[0].toObject()
-		console.log(data, 'data p by hh')
 		res.json(data)
 	})
 	.catch(err)
@@ -116,7 +105,6 @@ module.exports.getPersonResByHousehold = ({params: {id}}, res, err) => {
 	.where('age').gt(17)
 	.where('hasResource').equals(true)
 	.then((data) => {
-		console.log(data, "person by res")
 		res.json(data)
 	})
 	.catch(err)
@@ -128,7 +116,6 @@ module.exports.getPersonIncByHousehold = ({params: {id}}, res, err) => {
 	.where('age').gt(17)
 	.where('hasEmployer').equals(true)
 	.then((data) => {
-		console.log(data, "person by res")
 		res.json(data)
 	})
 	.catch(err)
