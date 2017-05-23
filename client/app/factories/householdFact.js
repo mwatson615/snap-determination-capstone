@@ -3,7 +3,7 @@ app.factory('householdFactory', ($http) => {
 	return {
 
 		createHousehold : (newHousehold) => {
-			return $http.post('http://localhost:3000/api/v1/household/new', JSON.stringify(newHousehold))
+			return $http.post('https://tennlabs-snaptest.herokuapp.com/api/v1/household/new', JSON.stringify(newHousehold))
 			.then((data) => {
 				return data
 			})
@@ -14,7 +14,7 @@ app.factory('householdFactory', ($http) => {
 			})
 		},
 		addShelter : (shelter) => {
-			return $http.patch('http://localhost:3000/api/v1/household/addShelter', JSON.stringify(shelter))
+			return $http.patch('https://tennlabs-snaptest.herokuapp.com/api/v1/household/addShelter', JSON.stringify(shelter))
 			.then((data) => {
 				return data
 			})
@@ -25,7 +25,7 @@ app.factory('householdFactory', ($http) => {
 			})
 		},
 		getHouseholdById : (householdId) => {
-			return $http.get(`http://localhost:3000/api/v1/household/${householdId}`)
+			return $http.get(`https://tennlabs-snaptest.herokuapp.com/api/v1/household/${householdId}`)
 			.then((data) => {
 				return data
 			})
@@ -36,7 +36,7 @@ app.factory('householdFactory', ($http) => {
 			})
 		},
 		getResults : (householdId) => {
-			return $http.get(`http://localhost:3000/api/v1/household/results/${householdId}`)
+			return $http.get(`https://tennlabs-snaptest.herokuapp.com/api/v1/household/results/${householdId}`)
 			.then((data) => {
 				return data
 			})

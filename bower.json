@@ -5,7 +5,7 @@
     "Michael Watson <m.watson.tn@gmail.com>"
   ],
   "description": "",
-  "main": "",
+  "main": "client/index.html",
   "license": "MIT",
   "ignore": [
     "**/.*",
