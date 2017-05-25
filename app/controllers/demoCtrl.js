@@ -88,14 +88,14 @@ app.controller('DemoCtrl', function($scope, $route, personFactory, $location, $c
 		}
 		personFactory.createPerson(newPerson[i])
 			.then((data) => {
+				if (counter > 0) {
+					$location.url('/resources')
+				} else {
+					$location.url('/income')
+				}
 			})
-		if (counter > 0) {
-			$location.url('/resources')
-		} else {
-			$location.url('/income')
 		}
 	}
-}
 
 	$scope.restart = () => {
 		$cookies.remove('householdId')

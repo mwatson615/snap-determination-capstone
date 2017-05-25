@@ -1,4 +1,4 @@
-**/auth
+server/auth.js
 
 # Logs
 logs

@@ -1,24 +1,21 @@
-app.controller('ResourceCtrl', function($scope, $cookies, personFactory, $location) {
+app.controller('ResourceCtrl', function($scope, $cookies, personFactory, $location, resourceData) {
 
 	let householdId = $cookies.get('householdId')
-	let personId = [];
-	// console.log(householdId, "hh id")
+	console.log(householdId, "hh id")
 	if (householdId === undefined) {
 		$location.url('/')
 	}
 
 // ROUTE ONLY GETS HH MEMBERS WHO HAVE RESOURCES
-	$(document).ready(() => {
-		personFactory.getPersonResByHousehold(householdId)
-		.then((data) => {
-			let results = data.data
-			$scope.personArray = [];
-			for (let i = 0; i < results.length; i++) {
-				$scope.personArray.push(results[i]);
-				personId.push(results[i]._id);
+			let personId = [];
+			$scope.personArray = resourceData.data
+			if ($scope.personArray.length === 0) {
+				$location.url('/income')
 			}
-		})
-	})
+			for (let i = 0; i < $scope.personArray.length; i++) {
+				// $scope.personArray.push(results[i]);
+				personId.push($scope.personArray[i]._id);
+			}
 
 // SAVES RESOURCES TO PERSON AND THEN TO HOUSEHOLD
 	$scope.saveResources = () => {
