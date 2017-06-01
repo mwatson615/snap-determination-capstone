@@ -1,4 +1,4 @@
-# SNAP-Determination-Capstone
+SNAP Test is now live at <a href="www.snaptest.help">www.snaptest.help</a>
 
 Overview of app: An app to determine eligibility for SNAP benefits and provide anonymous eligibility data via API using Angular, MongoDB/Mongoose, Express, Materialize, and Node.
 
