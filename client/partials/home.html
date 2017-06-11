@@ -1,14 +1,20 @@
 <div class="row">
-	<h3 class="col s12 center">Welcome!  Please read the following information before proceeding.</h3>
+	<h4 class="col s12 center">Welcome!  Please read the following information before proceeding.</h4>
 </div>
 <div class="row">
-	<p class="col s12 center">This app is accurate for Tennessee but does not include all criteria which could determine eligibility for the SNAP program.  The only way to know for sure is to apply with your local DHS/SNAP office.  This app is not official and exists for informational purposes only.  This app does not account for household members who do not have social security numbers, who receive Social Security or SSI benefits, who receive income from sources other than an employer, or who have not been legal permanent residents for at least 5 years.  Some information may be used for statistical purposes.</p>
+	<p class="col s12 center flow-text">This app is accurate for Tennessee but does not include all criteria which could determine eligibility for the SNAP program.  The only way to know for sure is to apply with your local DHS/SNAP office.  This app is not official and exists for informational purposes only.  This app does not account for household members who do not have social security numbers, are self-employed, or who have not been legal permanent residents for at least 5 years.  Some information may be used for statistical purposes.</p>
 </div>
-<h6 class="center"><a href="https://www.fns.usda.gov/snap/eligibility">See the Program Policies</a></h6>
+<h6 class="center flow-text"><a href="https://www.fns.usda.gov/snap/eligibility">See the Program Policies</a></h6>
 <form class="center">
-	<div class="input-field col s6">
-      <input id="zipcode" ng-model="zipcode" type="text" class="validate required col s3">
-      <label for="zipcode">Zip Code</label>
-    </div>
-	<a class="waves-effect waves-light btn" ng-click="proceed()">Proceed</a>
+	<div class="row">
+		<div class="input-field col s12">
+			<div class="zip col s12 m6">
+		      <input id="zipcode" ng-model="zipcode" type="text" maxlength="5" class="validate required" placeholder="Zip Code">
+		    </div>
+		    <div class="size col s12 m6">
+		      <input id="hhSize" ng-model="hhSize" type="text" maxlength="1" class="validate required" placeholder="Household Size">
+	      </div>
+	    </div>
+		<a class="waves-effect waves-light btn" ng-click="proceed()">Proceed</a>
+	</div>
 </form>
