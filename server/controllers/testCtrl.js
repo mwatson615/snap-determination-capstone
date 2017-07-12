@@ -15,8 +15,8 @@ const grossLimit = [1287, 1736, 2184, 2633, 3081, 3530, 3980, 4430]
 
 module.exports.grossTest = (householdSize, grossIncome) => {
 	let grossEligible = false;
-	for (let i = 1; i <= 8; i++)
-		if (householdSize === i && grossIncome <= grossLimit[i-1]) {
+	for (let i = 1; i < grossLimit.length; i++)
+		if ((householdSize === i) && (grossIncome <= grossLimit[i-1])) {
 		grossEligible = true
 		}
 	return grossEligible;

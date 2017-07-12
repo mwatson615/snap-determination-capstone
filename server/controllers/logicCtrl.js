@@ -70,6 +70,8 @@ module.exports.getSua = (householdSize, paysSUA) => {
 			usedSua = sua7;
 	}
 	return usedSua;
+	} else {
+		return 0;
 	}
 }
 
@@ -82,8 +84,6 @@ max5 = 771,
 max6 = 925,
 max7 = 1022,
 max8 = 1169
-
-//half of adjustedIC = 450.7
 
 module.exports.getFinalBenefit = (householdSize, netIncome) => {
 	let finalBenefit = '';
