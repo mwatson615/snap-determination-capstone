@@ -2,9 +2,6 @@
 
 process.env.NODE_ENV = "test";
 
-// let mongoose = require("mongoose");
-// let Household = require("./models/householdMdl");
-
 const chai = require('chai');
 const should = chai.Should();
 const expect = require('chai').expect;
