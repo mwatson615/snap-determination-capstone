@@ -1,5 +1,6 @@
 server/auth.js
 lib
+server/test
 
 # Logs
 logs
