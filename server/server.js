@@ -4,6 +4,7 @@ const express = require('express');
 const { json } = require('body-parser');
 const mongoose = require('mongoose');
 const { Router } = require('express');
+const logger = require('morgan');
 const router = Router();
 const auth = require('./auth')
 
@@ -11,9 +12,13 @@ const routes = require('./routes/router.js')
 
 const app = express();
 
+if (process.env.NODE_ENV !== 'test') {
+	app.use(logger('dev'));
+}
+
 const PORT = process.env.PORT || 3000
 
-const MONGODB_URL = process.env.MONGODB_URL ||`mongodb://${auth.username}:${auth.password}@ds151141.mlab.com:51141/snaptest`
+const MONGODB_URL = process.env.MONGODB_URL || `mongodb://${auth.username}:${auth.password}@ds151141.mlab.com:51141/snaptest`
 
 app.use(json());
 

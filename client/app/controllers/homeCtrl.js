@@ -1,4 +1,4 @@
-app.controller('HomeCtrl', function($scope, $location, householdFactory, $cookies) {
+app.controller('HomeCtrl', function($scope, $location, householdFactory, $cookies, personFactory, $route) {
 
 	$scope.proceed = () => {
 		let newHousehold = {
@@ -10,6 +10,8 @@ app.controller('HomeCtrl', function($scope, $location, householdFactory, $cookie
 			let id = results.data._id
 			$cookies.put('householdId', id);
 			let householdId = $cookies.get('householdId')
+			// $route.current.locals.$scope.householdId = householdId;
+				// personFactory.getHouseholdId(householdId)
 		})
 		.then(() => {
 			if ($scope.zipcode === undefined) {
