@@ -35,11 +35,27 @@ describe('netTest', () => {
 	it('should detect over net income for hh size', () => {
 		expect(netTest(householdSize[val], overNetLimit[val])).to.equal(false);
 	})
-
-
 })
 }
 
 for (var i = 1; i < 8; i++) {
 	netLoop(i-1)
+}
+
+function grossLoop(val) {
+describe('grossTest', () => {
+	const grossLimit = [1287, 1736, 2184, 2633, 3081, 3530, 3980, 4430];
+	let householdSize = [1, 2, 3, 4, 5, 6, 7, 8];
+	const overGrossLimit = [1288, 1737, 2185, 2634, 3082, 3531, 3981, 4431];
+	it('should detect gross eligibility based on hh size and gross income', () => {
+		expect(grossTest(householdSize[val], grossLimit[val])).to.equal(true);
+	})
+	it('should detect over gross income for hh size', () => {
+		expect(grossTest(householdSize[val], overGrossLimit[val])).to.equal(false);
+	})
+})
+}
+
+for (var i = 1; i < 8; i++) {
+	grossLoop(i-1)
 }
