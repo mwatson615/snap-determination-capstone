@@ -22,14 +22,14 @@ module.exports.grossTest = (householdSize, grossIncome) => {
 	return grossEligible;
 	}
 
-const netLimit = [990, 1335, 1680, 2025, 2370, 2715, 3061, 3408];
+	const netLimit = [990, 1335, 1680, 2025, 2370, 2715, 3061, 3408];
 // each additional is 347
 
 module.exports.netTest = (householdSize, netIncome) => {
 	let netEligible = false;
-	for (let i = 1; i <= 8; i++)
-		if (householdSize === i && netIncome <= netLimit[i-1]) {
-		netEligible = true
+	for (let i = 1; i < netLimit.length; i++)
+		if ((householdSize === i) && (netIncome <= netLimit[i-1])) {
+		netEligible = true;
 		}
 	return netEligible;
 	}

@@ -13,15 +13,33 @@ const assert = require('chai').assert;
 
 const { resourceTest, grossTest, netTest } = require('../server/controllers/testCtrl');
 
-describe('resourceTest', function () {
-	let resourceLimit = 2250;
+describe('resourceTest', () => {
 	let underResource = 2250;
 	let overResource = 2251;
 	it('should detect resources under resource limit', function () {
 		expect(resourceTest(underResource)).to.equal(true);
-		expect(resourceTest(overResource)).to.equal(false);
 	})
 	it('should detect resources over resource limit', function () {
 		expect(resourceTest(overResource)).to.equal(false);
 	})
 })
+
+function netLoop(val) {
+describe('netTest', () => {
+	const netLimit = [990, 1335, 1680, 2025, 2370, 2715, 3061, 3408];
+	let householdSize = [1, 2, 3, 4, 5, 6, 7, 8];
+	const overNetLimit = [991, 1336, 1681, 2026, 2371, 2716, 3062, 3409];
+	it('should detect net eligibility based on hh size and net income', () => {
+		expect(netTest(householdSize[val], netLimit[val])).to.equal(true);
+	})
+	it('should detect over net income for hh size', () => {
+		expect(netTest(householdSize[val], overNetLimit[val])).to.equal(false);
+	})
+
+
+})
+}
+
+for (var i = 1; i < 8; i++) {
+	netLoop(i-1)
+}
