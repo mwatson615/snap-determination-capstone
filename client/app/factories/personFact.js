@@ -1,4 +1,4 @@
-app.factory('personFactory', ($http, $q, $route, $location) => {
+app.factory('personFactory', ($http, $q, $route, $cookies) => {
 
 	return {
 
@@ -69,7 +69,8 @@ app.factory('personFactory', ($http, $q, $route, $location) => {
 			})
 		},
 		getPersonIncByHousehold : (householdId) => {
-			return $http.get(`https://tennlabs-snaptest.herokuapp.com/api/v1/person/inc/${householdId}`)
+			return $http
+			.get(`https://tennlabs-snaptest.herokuapp.com/api/v1/person/inc/${householdId}`)
 			.then((data) => {
 				return data
 			})
@@ -81,8 +82,3 @@ app.factory('personFactory', ($http, $q, $route, $location) => {
 		}
 	}
 })
-
-
-
-
-//

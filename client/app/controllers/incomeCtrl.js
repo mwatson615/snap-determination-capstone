@@ -1,4 +1,8 @@
-app.controller('IncomeCtrl', function($scope, $cookies, personFactory, $location) {
+app.controller('IncomeCtrl', function($scope, $cookies, personFactory, $location, incomeData) {
+
+	$(document).ready(function() {
+			$('select').material_select();
+		});
 
 	let householdId = $cookies.get('householdId')
 	if (householdId === undefined) {
@@ -6,25 +10,16 @@ app.controller('IncomeCtrl', function($scope, $cookies, personFactory, $location
 	}
 
 // ROUTE ONLY GETS HH MEMBERS WHO HAVE EMPLOYERS
-	personFactory.getPersonIncByHousehold(householdId)
-	.then((data) => {
-		$scope.hhInc = 0;
-		$scope.personArray = [];
-		$scope.personId = [];
-		let results = data.data;
-		if (results.length === 0) {
-			$location.url('/shelter')
-		}
-		for (let i = 0; i < results.length; i++) {
-				$scope.personArray.push(results[i]);
-				$scope.personId.push(results[i]._id);
-			}
-	})
-	.then(() => {
-		$(document).ready(function() {
-			$('select').material_select();
-		});
-	})
+	$scope.personArray = incomeData.data;
+	$scope.personId = [];
+	if ($scope.personArray.length === 0) {
+		$location.url('/shelter')
+	}
+	for (let i = 0; i < $scope.personArray.length; i++) {
+			$scope.personId.push($scope.personArray[i]._id);
+	}
+
+
 	$scope.totalIncome = [];
 	let divider = '',
 	multiplier = '',

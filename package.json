@@ -4,7 +4,7 @@
   "description": "",
   "main": "server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "nodemon --exec \"mocha --recursive\" -R list",
     "start": "node server/server.js",
     "postinstall": "./node_modules/bower/bin/bower install"
   },
@@ -24,11 +24,15 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "bower": "1.8.0",
+    "chai": "^4.0.2",
     "cors": "^2.8.3",
     "express": "^4.15.2",
     "express-server": "^0.7.0",
+    "mocha": "^3.4.2",
     "mongoose": "^4.9.8",
     "mongoose-auto-increment": "^5.0.1",
-    "nodemon": "^1.11.0"
+    "morgan": "^1.8.2",
+    "nodemon": "^1.11.0",
+    "should": "^11.2.1"
   }
 }
