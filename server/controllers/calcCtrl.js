@@ -7,9 +7,8 @@ module.exports.getArraySum = (moneyArray) => {
 	return sum;
 	}
 
-let shelterMult = 1;
-
 module.exports.convertHousing = (shelterFreq, shelterCost) => {
+	let shelterMult = 1;
 	if (shelterFreq === 'weekly') {
 		shelterMult = 4.3
 	} else if (shelterFreq === 'biweekly') {
