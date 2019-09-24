@@ -7,11 +7,11 @@ app.controller('HomeCtrl', function($scope, $location, householdFactory, $cookie
 		}
 		householdFactory.createHousehold(newHousehold)
 		.then((results) => {
+			let householdSize = [];
 			let id = results.data._id
 			$cookies.put('householdId', id);
 			let householdId = $cookies.get('householdId')
-			// $route.current.locals.$scope.householdId = householdId;
-				// personFactory.getHouseholdId(householdId)
+			householdSize.length = $scope.hhSize;
 		})
 		.then(() => {
 			if ($scope.zipcode === undefined) {
