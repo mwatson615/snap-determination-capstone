@@ -1,9 +1,9 @@
 app.factory('householdFactory', ($http) => {
 
 	return {
-
+//'https://tennlabs-snaptest.herokuapp.com/api/v1/household/new'
 		createHousehold : (newHousehold) => {
-			return $http.post('https://tennlabs-snaptest.herokuapp.com/api/v1/household/new', JSON.stringify(newHousehold))
+			return $http.post('localhost:27', JSON.stringify(newHousehold))
 			.then((data) => {
 				return data
 			})

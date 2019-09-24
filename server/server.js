@@ -18,7 +18,13 @@ if (process.env.NODE_ENV !== 'test') {
 
 const PORT = process.env.PORT || 3000
 
-const MONGODB_URL = process.env.MONGODB_URL || `mongodb://${auth.username}:${auth.password}@ds151141.mlab.com:51141/snaptest`
+const MONGODB_URL = 'localhost:27017'
+
+//process.env.MONGODB_URL ||
+
+// `mongodb://${auth.username}:${auth.password}@ds151141.mlab.com:51141/snaptest`
+
+
 
 app.use(json());
 
