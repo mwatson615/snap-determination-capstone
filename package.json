@@ -6,10 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js",
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "build": "set NODE_ENV=development&&node server/server.js",
+    "postinstall": "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@bower_components'), 'client/lib', 'junction') } catch (e) { }\""
   },
   "engines": {
-    "node": "7.4.0"
+    "node": "7.4.0",
+    "yarn": ">= 1.0.0"
   },
   "repository": {
     "type": "git",
@@ -22,13 +24,18 @@
   },
   "homepage": "https://github.com/mwatson615/SNAP-Determination-Capstone#readme",
   "dependencies": {
-    "body-parser": "^1.17.1",
+    "body-parser": "^1.19.0",
     "bower": "1.8.0",
-    "cors": "^2.8.3",
-    "express": "^4.15.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "express-server": "^0.7.0",
-    "mongoose": "^4.9.8",
+    "mongoose": "^4.13.19",
     "mongoose-auto-increment": "^5.0.1",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.19.2",
+    "@bower_components/angular": "angular/bower-angular#^1.6.4",
+    "@bower_components/angular-cookies": "angular/bower-angular-cookies#^1.6.4",
+    "@bower_components/angular-route": "angular/bower-angular-route#^1.6.4",
+    "@bower_components/jquery": "jquery/jquery-dist#^3.2.1",
+    "@bower_components/materialize": "Dogfalo/materialize#^0.99.0"
   }
 }
